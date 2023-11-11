@@ -1,9 +1,10 @@
 import {NextPage} from "next";
+import Hero from "./components/Hero";
 
 const Homepage: NextPage = () => {
   return (
     <>
-      HOMEPAGE
+      <Hero />
     </>
   )
 }
