@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "./components/navbar/Navbar";
 import AuthContextProvider from "./providers/UserProvider";
+import {Toaster} from "react-hot-toast";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
         <AuthContextProvider>
           <Navbar />
           {children}
+          <Toaster />
         </AuthContextProvider>
       </body>
     </html>
