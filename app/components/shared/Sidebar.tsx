@@ -1,8 +1,9 @@
-import { ChangeEvent, FC, useState } from "react";
+"use client"
+
+import { FC, useState } from "react";
 import classNames from "classnames";
 import MenuIcon from "@mui/icons-material/Menu";
 import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
-import AddToDriveIcon from "@mui/icons-material/AddToDrive";
 import { useAuth } from "../../hooks/useAuthContent";
 import LogoutIcon from "@mui/icons-material/Logout";
 import toast from "react-hot-toast";
@@ -12,9 +13,6 @@ import { Button } from "@mui/material";
 
 const Sidebar: FC = () => {
   const [collapsed, setSidebarCollapsed] = useState(false);
-  const [, setProgress] = useState(0);
-  const [isFileVisible, setFileVisible] = useState(false);
-  const [folderVisible, setFolderVisible] = useState(false);
   const [folderName, setFolderName] = useState("");
 
   const { currentUser, logout } = useAuth();
