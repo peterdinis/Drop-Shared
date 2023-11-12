@@ -5,8 +5,7 @@ import { useState, ChangeEvent, FC } from "react";
 import { useAuth } from "../../hooks/useAuthContent";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Input } from "../shared/Input"
+import Input from "../shared/Input";
 
 const LoginForm: FC = () => {
   const router = useRouter();
@@ -29,7 +28,7 @@ const LoginForm: FC = () => {
       router.push("/login");
     }
   };
-  
+
   return (
     <>
       <div className="lg:flex">
@@ -62,7 +61,7 @@ const LoginForm: FC = () => {
                   </div>
                 </div>
                 <Input
-                  type={showPassword ? "text" : "password"}
+                  type="password"
                   id="password"
                   value={credentials.password}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -72,10 +71,6 @@ const LoginForm: FC = () => {
                     })
                   }
                 />
-                <span onClick={togglePasswordVisibility}>
-                  {showPassword ? <VisibilityOff /> : <Visibility />} Show
-                  Password
-                </span>
               </div>
               <div className="mt-10">
                 <button
