@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { FC, useState } from "react";
 import classNames from "classnames";
@@ -9,13 +9,13 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import CloseIcon from "@mui/icons-material/Close";
+import AppModal from "./AppModal";
 
 const Sidebar: FC = () => {
   const [collapsed, setSidebarCollapsed] = useState(false);
 
   const { currentUser, logout } = useAuth();
   const router = useRouter();
-
 
   const logoutUser = () => {
     logout();
@@ -41,21 +41,32 @@ const Sidebar: FC = () => {
           )}
         </button>
         <div>
+          <div className="mt-4">
+            <p className="leading-7 [&:not(:first-child)]:mt-6">
+              {currentUser?.email || ""}
+            </p>
+          </div>
+          <div className="mt-8">
+            <div>
+              <AppModal
+                icon={<CreateNewFolderIcon />}
+                btnName={"New file"}
+                headerName={"Upload new file"}
+              >
+                ddd
+              </AppModal>
+            </div>{" "}
+            <br />
             <div className="mt-4">
-              <p className="leading-7 [&:not(:first-child)]:mt-6">
-                {currentUser?.email || ""}
-              </p>
+              <LogoutIcon onClick={logoutUser} />{" "}
+              <button
+                className="leading-7 [&:not(:first-child)]:mt-6"
+                onClick={logoutUser}
+              >
+                Logout
+              </button>
             </div>
-            <div className="mt-8">
-              <div>
-                <CreateNewFolderIcon />{" "}
-              </div>{" "}
-              <br />
-              <div className="mt-4">
-                <LogoutIcon onClick={logoutUser} />{" "}
-                <button className="leading-7 [&:not(:first-child)]:mt-6" onClick={logoutUser}>Logout</button>
-              </div>
-            </div>
+          </div>
         </div>
       </div>
     </div>
