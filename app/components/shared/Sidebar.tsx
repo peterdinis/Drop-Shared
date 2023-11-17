@@ -9,11 +9,9 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import CloseIcon from "@mui/icons-material/Close";
-import { Button } from "@mui/material";
 
 const Sidebar: FC = () => {
   const [collapsed, setSidebarCollapsed] = useState(false);
-  const [folderName, setFolderName] = useState("");
 
   const { currentUser, logout } = useAuth();
   const router = useRouter();
@@ -23,18 +21,6 @@ const Sidebar: FC = () => {
     logout();
     toast.success("Logout successfull");
     router.push("/login");
-  };
-
-  const uploadFolder = () => {
-    let payload = {
-      folderName: folderName,
-      isFolder: true,
-      parentId: currentUser?.uid!,
-      userEmail: currentUser?.email!,
-      sharedTo: [],
-    };
-    toast.success("New folder was created");
-    setFolderName("");
   };
 
   return (
@@ -55,6 +41,11 @@ const Sidebar: FC = () => {
           )}
         </button>
         <div>
+            <div className="mt-4">
+              <p className="leading-7 [&:not(:first-child)]:mt-6">
+                {currentUser?.email || ""}
+              </p>
+            </div>
             <div className="mt-8">
               <div>
                 <CreateNewFolderIcon />{" "}
@@ -62,7 +53,7 @@ const Sidebar: FC = () => {
               <br />
               <div className="mt-4">
                 <LogoutIcon onClick={logoutUser} />{" "}
-                <Button onClick={logoutUser}>Logout</Button>
+                <button className="leading-7 [&:not(:first-child)]:mt-6" onClick={logoutUser}>Logout</button>
               </div>
             </div>
         </div>
