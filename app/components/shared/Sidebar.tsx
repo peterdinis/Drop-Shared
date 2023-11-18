@@ -13,7 +13,7 @@ import AppModal from "./AppModal";
 const Sidebar: FC = () => {
   const [collapsed, setSidebarCollapsed] = useState(false);
 
-  const { currentUser, logout } = useAuth();
+  const { logout } = useAuth();
   const router = useRouter();
 
   const logoutUser = () => {
@@ -40,11 +40,6 @@ const Sidebar: FC = () => {
           )}
         </button>
         <div>
-          <div className="mt-4">
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
-              {currentUser?.email || ""}
-            </p>
-          </div>
           <div className="mt-8">
             <div>
               <AppModal

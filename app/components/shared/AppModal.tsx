@@ -1,4 +1,4 @@
-import { FC, useState, ReactNode } from "react";
+import { FC, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import { SvgIcon } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -6,13 +6,7 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import { Button } from "@/components/ui/button";
 import Typography from "@mui/material/Typography";
-
-interface IAppModalProps {
-  children?: ReactNode;
-  icon: ReactNode;
-  btnName: string;
-  headerName: string;
-}
+import { IAppModalProps } from "@/app/types/modalTypes";
 
 const style = {
   position: "absolute" as "absolute",
