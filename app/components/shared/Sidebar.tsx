@@ -7,6 +7,8 @@ import { useAuth } from "../../hooks/useAuthContent";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import AppModal from "./AppModal";
+import { Button } from "@/components/ui/button";
+import { Tooltip } from "@mui/material";
 
 const Sidebar: FC = () => {
   const [collapsed, setSidebarCollapsed] = useState(false);
@@ -88,20 +90,19 @@ const Sidebar: FC = () => {
               <div>
                 <AppModal icon={<Folder />}>ddd</AppModal>
               </div>{" "}
-              <div className="mt-4">
-                <BadgeX />{" "}
-                <button className="leading-7 [&:not(:first-child)]:mt-6">
-                  Delete file
-                </button>
+              <div className="mt-8">
+                <Tooltip title="Delete file">
+                  <Button variant={"ghost"} size={"sm"}>
+                    <BadgeX />
+                  </Button>
+                </Tooltip>
               </div>
-              <div className="mt-4">
-                <LogOut onClick={logoutUser} />{" "}
-                <button
-                  className="leading-7 [&:not(:first-child)]:mt-6"
-                  onClick={logoutUser}
-                >
-                  Logout
-                </button>
+              <div className="mt-8">
+                <Tooltip title="Logout">
+                  <Button onClick={logoutUser} variant={"ghost"} size={"sm"}>
+                    <LogOut />
+                  </Button>
+                </Tooltip>
               </div>
             </div>
           </div>
