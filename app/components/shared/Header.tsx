@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 
 interface IHeaderProps {
@@ -6,9 +8,9 @@ interface IHeaderProps {
 
 const Header: FC<IHeaderProps> = ({ text }: IHeaderProps) => {
   return (
-    <h2 className="flex justify-center align-top mt-6 text-black">
-      {text}
-    </h2>
+      <h2 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+        {text}
+      </h2>
   );
 };
 
