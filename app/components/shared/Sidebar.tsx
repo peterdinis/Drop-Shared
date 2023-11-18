@@ -53,7 +53,7 @@ const Sidebar: FC = () => {
                   </AppModal>
                 </div>{" "}
                 <br />
-                <div>
+                <div className="mt-8">
                   <AppModal
                     icon={<Folder />}
                     btnName={"New folder"}
@@ -62,20 +62,17 @@ const Sidebar: FC = () => {
                     ddd
                   </AppModal>
                 </div>{" "}
-                <div className="mt-4">
-                  <BadgeX />{" "}
-                  <button className="leading-7 [&:not(:first-child)]:mt-6">
+                <div className="mt-8">
+                  <Button variant={"ghost"} value="sm">
+                    <BadgeX />
                     Delete file
-                  </button>
+                  </Button>
                 </div>
-                <div className="mt-4">
-                  <LogOut onClick={logoutUser} />{" "}
-                  <button
-                    className="leading-7 [&:not(:first-child)]:mt-6"
-                    onClick={logoutUser}
-                  >
+                <div className="mt-8">
+                  <Button variant={"ghost"} value="sm" onClick={logoutUser}>
+                    <LogOut onClick={logoutUser} />
                     Logout
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
