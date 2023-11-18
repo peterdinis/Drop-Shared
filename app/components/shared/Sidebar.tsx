@@ -2,7 +2,15 @@
 
 import { FC, useState } from "react";
 import classNames from "classnames";
-import { FileJson, Folder, BadgeX, XCircle, Menu, LogOut } from "lucide-react";
+import {
+  FileJson,
+  Folder,
+  BadgeX,
+  XCircle,
+  Menu,
+  LogOut,
+  Server,
+} from "lucide-react";
 import { useAuth } from "../../hooks/useAuthContent";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -64,7 +72,7 @@ const Sidebar: FC = () => {
                 <div className="mt-8">
                   <Button variant={"ghost"} value="sm">
                     {" "}
-                   <SvgIcon children={<BadgeX />} /> Delete file
+                    <SvgIcon children={<BadgeX />} /> Delete file
                   </Button>
                 </div>{" "}
                 <div className="mt-8">
@@ -72,7 +80,16 @@ const Sidebar: FC = () => {
                     <LogOut onClick={logoutUser} />
                     Logout
                   </Button>
-                </div>
+                </div>{" "}
+                <div className="mt-8">
+                  <AppModal
+                    icon={<Server />}
+                    btnName={"Avaiable Storage"}
+                    headerName={"Avaiable Storage"}
+                  >
+                    ddd
+                  </AppModal>
+                </div>{" "}
               </div>
             </div>
           </>
@@ -80,11 +97,15 @@ const Sidebar: FC = () => {
           <div>
             <div className="mt-8">
               <div>
-                <AppModal icon={<FileJson />}>ddd</AppModal>
+                <Tooltip title="Add new file">
+                  <AppModal icon={<FileJson />}>ddd</AppModal>
+                </Tooltip>
               </div>{" "}
               <br />
               <div>
-                <AppModal icon={<Folder />}>ddd</AppModal>
+                <Tooltip title="Add new folder">
+                  <AppModal icon={<Folder />}>ddd</AppModal>
+                </Tooltip>
               </div>{" "}
               <div className="mt-8">
                 <Tooltip title="Delete file">
@@ -98,6 +119,11 @@ const Sidebar: FC = () => {
                   <Button onClick={logoutUser} variant={"ghost"} size={"sm"}>
                     <LogOut />
                   </Button>
+                </Tooltip>
+              </div>
+              <div className="mt-8">
+                <Tooltip title="Avaiable storage">
+                  <AppModal icon={<Server />}>ddd</AppModal>
                 </Tooltip>
               </div>
             </div>
