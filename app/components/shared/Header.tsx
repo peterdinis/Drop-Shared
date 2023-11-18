@@ -1,4 +1,7 @@
+"use client";
+
 import { FC } from "react";
+import { Container, Typography } from "@mui/material";
 
 interface IHeaderProps {
   text: string;
@@ -6,9 +9,11 @@ interface IHeaderProps {
 
 const Header: FC<IHeaderProps> = ({ text }: IHeaderProps) => {
   return (
-    <h2 className="flex justify-center align-top mt-6 text-black">
-      {text}
-    </h2>
+    <Container>
+      <Typography variant="h4" mt={10} color="textPrimary">
+        {text}
+      </Typography>
+    </Container>
   );
 };
 
