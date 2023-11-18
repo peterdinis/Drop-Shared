@@ -1,7 +1,6 @@
 "use client";
 
 import { FC } from "react";
-import { Container, Typography } from "@mui/material";
 
 interface IHeaderProps {
   text: string;
@@ -9,11 +8,9 @@ interface IHeaderProps {
 
 const Header: FC<IHeaderProps> = ({ text }: IHeaderProps) => {
   return (
-    <Container>
-      <Typography variant="h4" mt={10} color="textPrimary">
+      <h2 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
         {text}
-      </Typography>
-    </Container>
+      </h2>
   );
 };
 
