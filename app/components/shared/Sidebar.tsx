@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import AppModal from "./AppModal";
 import { Button } from "@/components/ui/button";
-import { Tooltip } from "@mui/material";
+import { SvgIcon, Tooltip } from "@mui/material";
 
 const Sidebar: FC = () => {
   const [collapsed, setSidebarCollapsed] = useState(false);
@@ -52,7 +52,6 @@ const Sidebar: FC = () => {
                     ddd
                   </AppModal>
                 </div>{" "}
-                <br />
                 <div className="mt-8">
                   <AppModal
                     icon={<Folder />}
@@ -64,10 +63,10 @@ const Sidebar: FC = () => {
                 </div>{" "}
                 <div className="mt-8">
                   <Button variant={"ghost"} value="sm">
-                    <BadgeX />
-                    Delete file
+                    {" "}
+                   <SvgIcon children={<BadgeX />} /> Delete file
                   </Button>
-                </div>
+                </div>{" "}
                 <div className="mt-8">
                   <Button variant={"ghost"} value="sm" onClick={logoutUser}>
                     <LogOut onClick={logoutUser} />
