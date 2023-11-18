@@ -5,6 +5,7 @@ import { useState, ChangeEvent, FC } from "react";
 import { useAuth } from "../../hooks/useAuthContent";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
+import Cookies from "js-cookie";
 import Input from "../shared/Input";
 
 const LoginForm: FC = () => {
@@ -20,6 +21,7 @@ const LoginForm: FC = () => {
   const loginUser = async () => {
     try {
       await login(credentials);
+      Cookies.set("userCredentials", JSON.stringify(credentials));
       toast.success("Login was successful");
       router.push("/dashboard");
     } catch (error) {

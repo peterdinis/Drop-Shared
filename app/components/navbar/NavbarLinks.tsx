@@ -1,15 +1,21 @@
-"use client";
+"use client"
 
-import { FC } from "react";
+
+import {FC} from "react";
 import Link from "next/link";
-import { useAuth } from "@/app/hooks/useAuthContent";
+import Cookies from "js-cookie";
 
 const NavbarLinks: FC = () => {
-  const { currentUser } = useAuth();
+  const userCredentialsString = Cookies.get("userCredentials");
+  const currentUser = userCredentialsString ? JSON.parse(userCredentialsString) : null;
 
   return (
     <>
-      {!currentUser ? (
+      {currentUser && currentUser.email ? (
+        <>
+          <span className="ml-4 font-bold">{currentUser.email}</span>
+        </>
+      ) : (
         <>
           <li className="text-black text-xl">
             <Link href="/login">Login</Link>
@@ -18,10 +24,6 @@ const NavbarLinks: FC = () => {
             <Link href="/register">Register</Link>
           </li>
         </>
-      ) : (
-        <p className="leading-7 [&:not(:first-child)]:mt-6">
-          {currentUser?.email}
-        </p>
       )}
     </>
   );
