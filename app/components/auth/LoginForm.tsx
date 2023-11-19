@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import Link from "next/link";
 import Cookies from "js-cookie";
 import Input from "../shared/Input";
+import { Button } from "@/components/ui/button";
 
 const LoginForm: FC = () => {
   const router = useRouter();
@@ -75,14 +76,12 @@ const LoginForm: FC = () => {
                 />
               </div>
               <div className="mt-10">
-                <button
+                <Button
                   onClick={loginUser}
-                  className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
-                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
-                                shadow-lg"
+                  size={"lg"}
                 >
                   Log In
-                </button>
+                </Button>
               </div>
               <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
                 Don't have an account ?{" "}

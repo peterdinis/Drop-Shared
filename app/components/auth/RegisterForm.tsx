@@ -6,6 +6,7 @@ import { useAuth } from "../../hooks/useAuthContent"
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 import Input from "../shared/Input";
+import { Button } from "@/components/ui/button";
 
 const RegisterForm: FC = () => {
   const router = useRouter();
@@ -72,14 +73,12 @@ const RegisterForm: FC = () => {
                   />
                 </div>
                 <div className="mt-10">
-                  <button
+                  <Button
+                    size={"lg"}
                     onClick={registerUser}
-                    className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
-                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
-                                shadow-lg"
                   >
                    Register
-                  </button>
+                  </Button>
                 </div>
               <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
                 Already have an account ?{" "}
