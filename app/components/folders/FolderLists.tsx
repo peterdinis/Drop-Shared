@@ -1,5 +1,6 @@
 import { FC } from "react";
 import FolderCard from "./FolderCard";
+import FolderPagination from "./FolderPagination";
 
 const FolderLists: FC = () => {
   return (
@@ -53,6 +54,7 @@ const FolderLists: FC = () => {
           </div>
         </div>
       </div>
+      <FolderPagination />
     </>
   );
 };
