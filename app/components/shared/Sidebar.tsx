@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import AppModal from "./AppModal";
 import { Button } from "@/components/ui/button";
 import { SvgIcon, Tooltip } from "@mui/material";
+import SmallHeader from "./SmallHeader";
 
 const Sidebar: FC = () => {
   const [collapsed, setSidebarCollapsed] = useState(false);
@@ -57,7 +58,8 @@ const Sidebar: FC = () => {
                     btnName={"New file"}
                     headerName={"Upload new file"}
                   >
-                    ddd
+                    <SmallHeader text="Upload new file" />
+
                   </AppModal>
                 </div>{" "}
                 <div className="mt-8">
