@@ -1,19 +1,21 @@
 import { FC } from "react";
 import { Folder } from "lucide-react";
+import Link from "next/link";
 
 interface IFolderCardProps {
   folderName: string;
+  linkName: string;
 }
 
-const FolderCard: FC<IFolderCardProps> = ({ folderName }: IFolderCardProps) => {
+const FolderCard: FC<IFolderCardProps> = ({ folderName, linkName }: IFolderCardProps) => {
   return (
     <article className="overflow-hidden rounded-lg shadow-lg">
 
       <header className="flex items-center justify-between leading-tight p-2 md:p-4">
         <h1 className="text-lg">
-          <a className="no-underline hover:underline text-black" href="#">
+          <Link className="no-underline hover:underline text-black" href={`/${linkName}`}>
             <Folder /> {folderName}
-          </a>
+          </Link>
         </h1>
       </header>
     </article>
