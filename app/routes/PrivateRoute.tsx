@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, ComponentType } from "react";
 import Cookies from "js-cookie";
+import {toast} from "react-hot-toast";
 
 const PrivateRoute = <T extends object>(WrappedComponent: ComponentType<T>) => {
   return (props: T) => {
@@ -12,6 +13,7 @@ const PrivateRoute = <T extends object>(WrappedComponent: ComponentType<T>) => {
     useEffect(() => {
       if (!getUserCookie) {
         router.push("/login");
+        toast.error("You must be logged in before your access dashboard page");
       }
     }, [getUserCookie]);
 

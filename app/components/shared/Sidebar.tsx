@@ -17,8 +17,14 @@ import { useRouter } from "next/navigation";
 import AppModal from "./AppModal";
 import { Button } from "@/components/ui/button";
 import { SvgIcon, Tooltip } from "@mui/material";
+import { db } from "@/app/lib/firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
 
 const Sidebar: FC = () => {
+  const { currentUser } = useAuth();
+  const docId = Date.now().toString();
+
+  const [folderName, setFolderName] = useState("");
   const [collapsed, setSidebarCollapsed] = useState(false);
 
   const { logout } = useAuth();
@@ -28,6 +34,16 @@ const Sidebar: FC = () => {
     logout();
     toast.success("Logout successfull");
     router.push("/login");
+  };
+
+  const onCreateNewFolder = async () => {
+    setFolderName(folderName);
+    await setDoc(doc(db, "Folders", docId), {
+      name: folderName,
+      id: docId,
+      createdBy: currentUser?.email,
+    });
+    toast.success("New folder was created");
   };
 
   return (
@@ -78,9 +94,10 @@ const Sidebar: FC = () => {
                       <input
                         className="bg-white rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center bg-transparent py-1 text-gray-600 px-4 focus:outline-none w-full"
                         placeholder="New file"
+                        value={folderName}
                       />
                       <div className="mt-3">
-                        <Button>Upload</Button>
+                        <Button onClick={onCreateNewFolder}>Upload</Button>
                       </div>
                     </form>
                   </AppModal>
@@ -104,7 +121,6 @@ const Sidebar: FC = () => {
                     headerName={"Avaiable Storage"}
                   >
                     <br />
-                    
                   </AppModal>
                 </div>{" "}
               </div>
