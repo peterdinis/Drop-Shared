@@ -17,7 +17,6 @@ import { useRouter } from "next/navigation";
 import AppModal from "./AppModal";
 import { Button } from "@/components/ui/button";
 import { SvgIcon, Tooltip } from "@mui/material";
-import SmallHeader from "./SmallHeader";
 
 const Sidebar: FC = () => {
   const [collapsed, setSidebarCollapsed] = useState(false);
@@ -58,8 +57,15 @@ const Sidebar: FC = () => {
                     btnName={"New file"}
                     headerName={"Upload new file"}
                   >
-                    <SmallHeader text="Upload new file" />
-
+                    <form className="mt-5">
+                      <input
+                        className="bg-white rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center bg-transparent py-1 text-gray-600 px-4 focus:outline-none w-full"
+                        placeholder="New file"
+                      />
+                      <div className="mt-3">
+                        <Button>Upload</Button>
+                      </div>
+                    </form>
                   </AppModal>
                 </div>{" "}
                 <div className="mt-8">
@@ -68,7 +74,15 @@ const Sidebar: FC = () => {
                     btnName={"New folder"}
                     headerName={"Upload new folder"}
                   >
-                    ddd
+                    <form className="mt-5">
+                      <input
+                        className="bg-white rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center bg-transparent py-1 text-gray-600 px-4 focus:outline-none w-full"
+                        placeholder="New file"
+                      />
+                      <div className="mt-3">
+                        <Button>Upload</Button>
+                      </div>
+                    </form>
                   </AppModal>
                 </div>{" "}
                 <div className="mt-8">
@@ -89,7 +103,8 @@ const Sidebar: FC = () => {
                     btnName={"Avaiable Storage"}
                     headerName={"Avaiable Storage"}
                   >
-                    ddd
+                    <br />
+                    
                   </AppModal>
                 </div>{" "}
               </div>
