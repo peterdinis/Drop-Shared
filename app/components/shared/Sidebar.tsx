@@ -131,13 +131,13 @@ const Sidebar: FC = () => {
             <div className="mt-8">
               <div>
                 <Tooltip title="Add new file">
-                  <AppModal icon={<FileJson />}>ddd</AppModal>
+                  <AppModal tooltipName="Add new file" icon={<FileJson />}>ddd</AppModal>
                 </Tooltip>
               </div>{" "}
               <br />
               <div>
                 <Tooltip title="Add new folder">
-                  <AppModal icon={<Folder />}>ddd</AppModal>
+                  <AppModal tooltipName="Add new folder" icon={<Folder />}>ddd</AppModal>
                 </Tooltip>
               </div>{" "}
               <div className="mt-8">
