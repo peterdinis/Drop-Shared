@@ -13,7 +13,7 @@ import { useState } from "react";
 
 const FolderLists: FC = () => {
   const { currentUser } = useAuth();
-  const [folderList, setFolderList] = useState([]);
+  const [, setFolderList] = useState([]);
 
   const getFolderList = async () => {
     setFolderList([]);
@@ -37,51 +37,9 @@ const FolderLists: FC = () => {
           <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
             <FolderCard folderName={"abc"} linkName={"test"} />
           </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
-          <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <FolderCard folderName={"abc"} linkName={"test"} />
-          </div>
         </div>
       </div>
-      <FolderPagination />
+      {/* <FolderPagination /> */}
     </>
   );
 };
