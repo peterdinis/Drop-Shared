@@ -1,11 +1,8 @@
+import FolderDetail from "@/app/components/folders/FolderDetail";
 import { NextPage } from "next";
 
 const FolderDetailPage: NextPage = () => {
-    return (
-        <>
-            abc
-        </>
-    )
+    return <FolderDetail />
 }
 
 export default FolderDetailPage;
