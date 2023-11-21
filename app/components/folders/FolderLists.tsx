@@ -14,10 +14,10 @@ const FolderLists: FC = () => {
     setFolderList([]);
     const q = query(
       collection(db, "Folders"),
-      where("parentFolderId", "==", 0),
-      where("createBy", "==", currentUser?.email)
+      where("createdBy", "==", currentUser?.email)
     );
-
+    console.log(q);
+    
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       setFolderList((folderList) => [...folderList, doc.data()] as any); // TODO: Fix as any
@@ -27,6 +27,8 @@ const FolderLists: FC = () => {
   useEffect(() => {
     getFolderList();
   }, []);
+
+  console.log(folderList);
 
   return (
     <>
