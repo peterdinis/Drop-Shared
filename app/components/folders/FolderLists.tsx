@@ -1,19 +1,14 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import FolderCard from "./FolderCard";
 import FolderPagination from "./FolderPagination";
-import {
-  collection,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/app/lib/firebaseConfig";
 import { useAuth } from "@/app/hooks/useAuthContent";
 import { useState } from "react";
 
 const FolderLists: FC = () => {
   const { currentUser } = useAuth();
-  const [, setFolderList] = useState([]);
+  const [folderList, setFolderList] = useState([]);
 
   const getFolderList = async () => {
     setFolderList([]);
@@ -25,10 +20,13 @@ const FolderLists: FC = () => {
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
       setFolderList((folderList) => [...folderList, doc.data()] as any); // TODO: Fix as any
     });
   };
+
+  useEffect(() => {
+    getFolderList();
+  }, []);
 
   return (
     <>

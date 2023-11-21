@@ -8,7 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import NavbarLinks from "./NavbarLinks"
 
 const Navbar: FC = () => {
-  const [navbar, setNavbar] = useState<boolean>(false);
+  const [navbar, setNavbar] = useState(false);
 
   return (
     <nav className="w-full bg-white">
