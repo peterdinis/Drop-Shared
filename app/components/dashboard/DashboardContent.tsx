@@ -8,8 +8,7 @@ import ScrollToTop from "react-scroll-to-top";
 const DashboardContent: FC = () => {
   return (
     <>
-    RORORO
-     {/*  <div className="ml-5 py-4 px-8 flex-growtext-center">
+      <div className="ml-5 py-4 px-8 flex-growtext-center flex-1">
         <Header text="Your files and folders" />
         <br />
         <input
@@ -23,7 +22,7 @@ const DashboardContent: FC = () => {
           <FolderLists />
         </section>
         <ScrollToTop smooth={true} />
-      </div> */}
+      </div>
     </>
   );
 };
