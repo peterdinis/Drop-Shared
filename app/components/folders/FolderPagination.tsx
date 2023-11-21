@@ -16,24 +16,15 @@ const FolderPagination: FC = () => {
           <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
             2
           </p>
-          <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
-            3
-          </p>
-          <p className="text-sm font-medium leading-none cursor-pointer text-indigo-700 border-t border-indigo-400 pt-3 mr-4 px-2">
-            4
-          </p>
-          <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
-            5
-          </p>
-          <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
-            6
-          </p>
-          <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
-            7
-          </p>
-          <p className="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2">
-            8
-          </p>
+        </div>
+        <div className="sm:hidden">
+          <select
+            className="mt-4 border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+            onChange={(e) => console.log(`Go to page ${e.target.value}`)}
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
         </div>
         <div className="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer">
           <p className="text-sm font-medium leading-none mr-3">Next</p>
