@@ -39,7 +39,6 @@ const Sidebar: FC = () => {
 
   const onCreateNewFolder = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    setFolderName(folderName);
     await setDoc(doc(db, "Folders", docId), {
       name: folderName,
       id: docId,
@@ -97,7 +96,7 @@ const Sidebar: FC = () => {
                         className="bg-white rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center bg-transparent py-1 text-gray-600 px-4 focus:outline-none w-full"
                         placeholder="New file"
                         value={folderName}
-                        onChange={() => setFolderName(folderName)}
+                        onChange={(e) => setFolderName(e.target.value)}
                       />
                       <div className="mt-3">
                         <Button onClick={onCreateNewFolder}>Upload</Button>
@@ -149,6 +148,8 @@ const Sidebar: FC = () => {
                         type="text"
                         className="bg-white rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center bg-transparent py-1 text-gray-600 px-4 focus:outline-none w-full"
                         placeholder="New folder"
+                        value={folderName}
+                        onChange={(e) => setFolderName(e.target.value)}
                       />
                       <div className="mt-3">
                         <Button onClick={onCreateNewFolder}>Upload</Button>
