@@ -39,7 +39,7 @@ const FolderLists: FC = () => {
           </div>
         </div>
       </div>
-      {/* <FolderPagination /> */}
+      <FolderPagination />
     </>
   );
 };
