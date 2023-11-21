@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { SvgIcon, Tooltip } from "@mui/material";
 import { db } from "@/app/lib/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
+import SmallHeader from "./SmallHeader";
 
 const Sidebar: FC = () => {
   const { currentUser } = useAuth();
@@ -36,7 +37,8 @@ const Sidebar: FC = () => {
     router.push("/login");
   };
 
-  const onCreateNewFolder = async () => {
+  const onCreateNewFolder = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
     setFolderName(folderName);
     await setDoc(doc(db, "Folders", docId), {
       name: folderName,
@@ -95,6 +97,7 @@ const Sidebar: FC = () => {
                         className="bg-white rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center bg-transparent py-1 text-gray-600 px-4 focus:outline-none w-full"
                         placeholder="New file"
                         value={folderName}
+                        onChange={() => setFolderName(folderName)}
                       />
                       <div className="mt-3">
                         <Button onClick={onCreateNewFolder}>Upload</Button>
@@ -131,13 +134,27 @@ const Sidebar: FC = () => {
             <div className="mt-8">
               <div>
                 <Tooltip title="Add new file">
-                  <AppModal tooltipName="Add new file" icon={<FileJson />}>ddd</AppModal>
+                  <AppModal tooltipName="Add new file" icon={<FileJson />}>
+                    ddd
+                  </AppModal>
                 </Tooltip>
               </div>{" "}
               <br />
               <div>
                 <Tooltip title="Add new folder">
-                  <AppModal tooltipName="Add new folder" icon={<Folder />}>ddd</AppModal>
+                  <AppModal tooltipName="Add new folder" icon={<Folder />}>
+                    <SmallHeader text="Upload new folder" />
+                    <form className="mt-5">
+                      <input
+                        type="text"
+                        className="bg-white rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center bg-transparent py-1 text-gray-600 px-4 focus:outline-none w-full"
+                        placeholder="New folder"
+                      />
+                      <div className="mt-3">
+                        <Button onClick={onCreateNewFolder}>Upload</Button>
+                      </div>
+                    </form>
+                  </AppModal>
                 </Tooltip>
               </div>{" "}
               <div className="mt-8">
