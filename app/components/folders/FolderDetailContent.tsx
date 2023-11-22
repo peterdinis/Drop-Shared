@@ -1,9 +1,10 @@
 import { FC } from "react";
+import Header from "../shared/Header";
 
 const FolderDetailContent: FC = () => {
     return (
         <>
-        aaaa
+            <Header text="Folder Detail" />
         </>
     )
 }
