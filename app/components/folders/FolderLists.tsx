@@ -4,6 +4,9 @@ import FolderPagination from "./FolderPagination";
 import { useAuth } from "@/app/hooks/useAuthContent";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/app/lib/firebaseConfig";
+import { IFolderType } from "@/app/types/folderTypes";
+
+/* TODO: Later add condition for display files by specific user */
 
 const FolderLists: FC = () => {
   const { currentUser } = useAuth();
@@ -28,12 +31,11 @@ const FolderLists: FC = () => {
     <>
       <div className="container my-12 mx-auto px-4 md:px-12">
         <div className="flex flex-wrap -mx-1 lg:-mx-4">
-          {/* {folders.map((folder) => (
+          {folders.map((folder: IFolderType) => (
             <div key={folder.id} className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-              <FolderCard folderName={folder.folderName} linkName={folder.linkName} />
+              <FolderCard linkName={folder.id} name={folder.name} />
             </div>
-          ))} */}
-          abc
+          ))}
         </div>
       </div>
       <FolderPagination />
