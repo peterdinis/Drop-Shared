@@ -1,18 +1,18 @@
 import { FC, useEffect, useState } from "react";
 import FolderCard from "./FolderCard";
 import FolderPagination from "./FolderPagination";
-import { useAuth } from "@/app/hooks/useAuthContent";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/app/lib/firebaseConfig";
 import { IFolderType } from "@/app/types/folderTypes";
+import Cookies from "js-cookie";
 
-/* TODO: Later add condition for display files by specific user */
+/* TODO: Later add condition for display files by specific user and update folder detail */
 
 const FolderLists: FC = () => {
-  const { currentUser } = useAuth();
   const [folders, setFolders] = useState([]);
 
   const docRef = collection(db, 'Folders');
+
 
   useEffect(() => {
     const unsubscribe = onSnapshot(docRef, (querySnapshot) => {
@@ -26,7 +26,7 @@ const FolderLists: FC = () => {
     return () => unsubscribe();
   }, []);
 
-  console.log(folders);
+
   return (
     <>
       <div className="container my-12 mx-auto px-4 md:px-12">
