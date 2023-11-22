@@ -1,11 +1,10 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useState, useCallback } from "react";
 import classNames from "classnames";
 import {
   FileJson,
   Folder,
-  BadgeX,
   XCircle,
   Menu,
   LogOut,
@@ -16,10 +15,11 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import AppModal from "./AppModal";
 import { Button } from "@/components/ui/button";
-import { SvgIcon, Tooltip } from "@mui/material";
+import { Tooltip } from "@mui/material";
 import { db } from "@/app/lib/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import SmallHeader from "./SmallHeader";
+import { useDropzone } from "react-dropzone";
 
 const Sidebar: FC = () => {
   const { currentUser } = useAuth();
@@ -37,7 +37,7 @@ const Sidebar: FC = () => {
     router.push("/login");
   };
 
-  const onCreateNewFolder = async (e: { preventDefault: () => void; }) => {
+  const onCreateNewFolder = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     await setDoc(doc(db, "Folders", docId), {
       name: folderName,
@@ -46,6 +46,11 @@ const Sidebar: FC = () => {
     });
     toast.success("New folder was created");
   };
+
+  const onDrop = useCallback((acceptedFiles: any[]) => {
+    // Do something with the files
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
     <div
@@ -75,10 +80,20 @@ const Sidebar: FC = () => {
                     headerName={"Upload new file"}
                   >
                     <form className="mt-5">
-                      <input
-                        className="bg-white rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center bg-transparent py-1 text-gray-600 px-4 focus:outline-none w-full"
-                        placeholder="New file"
-                      />
+                      <div {...getRootProps()}>
+                        <input
+                          className="bg-white rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center bg-transparent py-1 text-gray-600 px-4 focus:outline-none w-full"
+                          {...getInputProps()}
+                        />
+                        {isDragActive ? (
+                          <p>Drop the files here ...</p>
+                        ) : (
+                          <p>
+                            Drag 'n' drop some files here, or click to select
+                            files
+                          </p>
+                        )}
+                      </div>
                       <div className="mt-3">
                         <Button>Upload</Button>
                       </div>
@@ -105,12 +120,6 @@ const Sidebar: FC = () => {
                   </AppModal>
                 </div>{" "}
                 <div className="mt-8">
-                  <Button variant={"ghost"} value="sm">
-                    {" "}
-                    <SvgIcon children={<BadgeX />} /> Delete file
-                  </Button>
-                </div>{" "}
-                <div className="mt-8">
                   <Button variant={"ghost"} value="sm" onClick={logoutUser}>
                     <LogOut onClick={logoutUser} />
                     Logout
@@ -134,7 +143,25 @@ const Sidebar: FC = () => {
               <div>
                 <Tooltip title="Add new file">
                   <AppModal tooltipName="Add new file" icon={<FileJson />}>
-                    ddd
+                  <form className="mt-5">
+                      <div {...getRootProps()}>
+                        <input
+                          className="bg-white rounded-l border-r border-gray-200 hover:bg-gray-50 active:bg-gray-200 disabled:opacity-50 inline-flex items-center bg-transparent py-1 text-gray-600 px-4 focus:outline-none w-full"
+                          {...getInputProps()}
+                        />
+                        {isDragActive ? (
+                          <p>Drop the files here ...</p>
+                        ) : (
+                          <p>
+                            Drag 'n' drop some files here, or click to select
+                            files
+                          </p>
+                        )}
+                      </div>
+                      <div className="mt-3">
+                        <Button>Upload</Button>
+                      </div>
+                    </form>
                   </AppModal>
                 </Tooltip>
               </div>{" "}
@@ -158,13 +185,6 @@ const Sidebar: FC = () => {
                   </AppModal>
                 </Tooltip>
               </div>{" "}
-              <div className="mt-8">
-                <Tooltip title="Delete file">
-                  <Button variant={"ghost"} size={"sm"}>
-                    <BadgeX />
-                  </Button>
-                </Tooltip>
-              </div>
               <div className="mt-8">
                 <Tooltip title="Logout">
                   <Button onClick={logoutUser} variant={"ghost"} size={"sm"}>
