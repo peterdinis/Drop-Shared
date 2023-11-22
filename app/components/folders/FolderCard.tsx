@@ -18,7 +18,7 @@ const FolderCard: FC<IFolderCardProps> = ({
         <h1 className="text-lg">
           <Link
             className="no-underline hover:underline text-black"
-            href={`/${linkName}`}
+            href={`/folder/${linkName}`}
           >
             <Folder /> {name}
           </Link>
