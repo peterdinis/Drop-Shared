@@ -1,17 +1,18 @@
 import { FC } from "react";
-import { Folder } from "lucide-react";
+import { Folder, BadgeX } from "lucide-react";
 import Link from "next/link";
-
-interface IFolderCardProps {
-  linkName?: string;
-  id?: string;
-  name?: string;
-}
+import { IFolderCardProps } from "@/app/types/folderTypes";
+import {toast} from "react-hot-toast";
 
 const FolderCard: FC<IFolderCardProps> = ({
   name,
-  linkName,
+  linkName
 }: IFolderCardProps) => {
+  
+  const deleteFileFN = () => {
+    toast.success("File was deleted");
+  }
+
   return (
     <article className="overflow-hidden rounded-lg shadow-lg">
       <header className="flex items-center justify-between leading-tight p-2 md:p-4">
@@ -23,6 +24,7 @@ const FolderCard: FC<IFolderCardProps> = ({
             <Folder /> {name}
           </Link>
         </h1>
+        <BadgeX onClick={deleteFileFN} />
       </header>
     </article>
   );
