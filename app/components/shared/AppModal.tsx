@@ -7,18 +7,7 @@ import Fade from "@mui/material/Fade";
 import { Button } from "@/components/ui/button";
 import Typography from "@mui/material/Typography";
 import { IAppModalProps } from "@/app/types/modalTypes";
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import {style} from "./style";
 
 const AppModal: FC<IAppModalProps> = ({
   children,
