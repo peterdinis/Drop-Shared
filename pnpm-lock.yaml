@@ -38,9 +38,6 @@ dependencies:
   firebase:
     specifier: ^10.6.0
     version: 10.6.0
-  jotai:
-    specifier: ^2.5.1
-    version: 2.5.1(@types/react@18.2.37)(react@18.2.0)
   js-cookie:
     specifier: ^3.0.5
     version: 3.0.5
@@ -74,6 +71,9 @@ dependencies:
   tailwindcss-animate:
     specifier: ^1.0.7
     version: 1.0.7(tailwindcss@3.3.5)
+  uuid:
+    specifier: ^9.0.1
+    version: 9.0.1
 
 devDependencies:
   '@tailwindcss/forms':
@@ -94,6 +94,9 @@ devDependencies:
   '@types/react-dom':
     specifier: ^18
     version: 18.2.15
+  '@types/uuid':
+    specifier: ^9.0.7
+    version: 9.0.7
   autoprefixer:
     specifier: ^10.0.1
     version: 10.4.16(postcss@8.4.31)
@@ -1632,6 +1635,10 @@ packages:
   /@types/scheduler@0.16.6:
     resolution: {integrity: sha512-Vlktnchmkylvc9SnwwwozTv04L/e1NykF5vgoQ0XTmI8DD+wxfjQuHuvHS3p0r2jz2x2ghPs2h1FVeDirIteWA==}
 
+  /@types/uuid@9.0.7:
+    resolution: {integrity: sha512-WUtIVRUZ9i5dYXefDEAI7sh9/O7jGvHg7Df/5O/gtH3Yabe5odI3UWopVR1qbPXQtvOxWu3mM4XxlYeZtMWF4g==}
+    dev: true
+
   /@typescript-eslint/parser@6.10.0(eslint@8.53.0)(typescript@5.2.2):
     resolution: {integrity: sha512-+sZwIj+s+io9ozSxIWbNB5873OSdfeBEH/FR0re14WLI6BaKuSOnnwCJ2foUiu8uXf4dRp1UqHP0vrZ1zXGrog==}
     engines: {node: ^16.0.0 || >=18.0.0}
@@ -3113,22 +3120,6 @@ packages:
     resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
     hasBin: true
 
-  /jotai@2.5.1(@types/react@18.2.37)(react@18.2.0):
-    resolution: {integrity: sha512-vanPCCSuHczUXNbVh/iUunuMfrWRL4FdBtAbTRmrfqezJcKb8ybBTg8iivyYuUHapjcDETyJe1E4inlo26bVHA==}
-    engines: {node: '>=12.20.0'}
-    peerDependencies:
-      '@types/react': '>=17.0.0'
-      react: '>=17.0.0'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      '@types/react': 18.2.37
-      react: 18.2.0
-    dev: false
-
   /js-cookie@3.0.5:
     resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
     engines: {node: '>=14'}
@@ -4185,6 +4176,11 @@ packages:
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+
+  /uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
+    dev: false
 
   /watchpack@2.4.0:
     resolution: {integrity: sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg==}

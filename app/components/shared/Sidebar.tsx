@@ -20,10 +20,11 @@ import { db } from "@/app/lib/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import SmallHeader from "./SmallHeader";
 import { useDropzone } from "react-dropzone";
+import { v4 as uuid } from "uuid";
 
 const Sidebar: FC = () => {
   const { currentUser } = useAuth();
-  const docId = Date.now().toString();
+  const docId = uuid().toString() as unknown as string;
 
   const [folderName, setFolderName] = useState("");
   const [collapsed, setSidebarCollapsed] = useState(false);
