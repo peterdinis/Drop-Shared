@@ -22,7 +22,7 @@ const FolderCard: FC<IFolderCardProps> = ({
       <header className="flex items-center justify-between leading-tight p-2 md:p-4">
         <h1 className="text-lg">
           <Link
-            className="no-underline hover:underline text-black"
+            className="text-black"
             href={`/folder/${linkName}`}
           >
             <Folder /> {name}
