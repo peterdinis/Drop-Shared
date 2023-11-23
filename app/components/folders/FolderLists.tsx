@@ -4,7 +4,6 @@ import FolderPagination from "./FolderPagination";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/app/lib/firebaseConfig";
 import { IFolderType } from "@/app/types/folderTypes";
-import Cookies from "js-cookie";
 
 /* TODO: Later add condition for display files by specific user and update folder detail */
 
