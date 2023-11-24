@@ -16,12 +16,8 @@ const FolderDetail: FC = () => {
   const getFolderInfo = getDoc(doc(db, `Folders/${id}`));
 
   getFolderInfo.then((data: any) =>{ // TODO: Neskôr spraviť update pre toto
-    console.log(data._document?.data.value.mapValue.fields);
     setFolderInfo(data._document?.data.value.mapValue.fields);
   });
-
-  console.log(folderInfo); 
-
 
   return (
     <div className="flex text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
