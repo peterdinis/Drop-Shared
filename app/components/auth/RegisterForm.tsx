@@ -24,7 +24,6 @@ const RegisterForm: FC = () => {
       toast.success("Registration was successful");
       router.push("/login");
     } catch (error) {
-      console.error("Register error:", error);
       toast.error("Register failed");
       router.push("/register");
     }

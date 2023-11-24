@@ -26,7 +26,6 @@ const LoginForm: FC = () => {
       toast.success("Login was successful");
       router.push("/dashboard");
     } catch (error) {
-      console.error("Login error:", error);
       toast.error("Login failed. Please check your credentials.");
       router.push("/login");
     }
