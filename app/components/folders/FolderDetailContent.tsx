@@ -19,8 +19,8 @@ const FolderDetailContent: FC<IFolderProps> = ({folderInfo}: IFolderProps) => {
       </span>
 
       <div className="mt-10">
-        <Folder /> <span>{folderInfo.name.stringValue}</span> <br />
-        <span>Created by: {folderInfo.createdBy.stringValue}</span>
+        <Folder /> <span>{folderInfo.name?.stringValue}</span> <br />
+        <span>Created by: {folderInfo.createdBy?.stringValue}</span>
       </div>
     </div>
   );
