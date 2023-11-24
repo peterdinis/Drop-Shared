@@ -12,7 +12,7 @@ const FolderDetailContent: FC<IFolderProps> = ({folderInfo}: IFolderProps) => {
     <div className="ml-5 py-4 px-8 flex-growtext-center flex-1">
       <Header text="Folder Detail" />
       <span className="mt-4 text-center">
-        <Link href="/">Go to dashboard</Link>
+        <Link href="/dashboard">Go to dashboard</Link>
       </span>
     </div>
   );
