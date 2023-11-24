@@ -16,6 +16,7 @@ const AppModal: FC<IAppModalProps> = ({
   tooltipName,
   headerName,
 }: IAppModalProps) => {
+  
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
