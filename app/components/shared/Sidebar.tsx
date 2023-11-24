@@ -21,6 +21,8 @@ import { doc, setDoc } from "firebase/firestore";
 import SmallHeader from "./SmallHeader";
 import { useDropzone } from "react-dropzone";
 import { v4 as uuid } from "uuid";
+import { useRecoilState } from "recoil";
+import { folderAtom } from "@/app/recoil/atoms/folderAtom";
 
 const Sidebar: FC = () => {
   const { currentUser } = useAuth();
@@ -28,6 +30,7 @@ const Sidebar: FC = () => {
 
   const [folderName, setFolderName] = useState("");
   const [collapsed, setSidebarCollapsed] = useState(false);
+  const [, setFolderInfo] = useRecoilState(folderAtom);
 
   const { logout } = useAuth();
   const router = useRouter();
@@ -45,6 +48,12 @@ const Sidebar: FC = () => {
       id: docId,
       createdBy: currentUser?.email,
     });
+    const newFolderObj = {
+      id: docId,
+      createdBy: currentUser?.email,
+      name: folderName
+    }
+    setFolderInfo(newFolderObj);
     toast.success("New folder was created");
   };
 
