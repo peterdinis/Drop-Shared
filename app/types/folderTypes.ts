@@ -8,3 +8,15 @@ export interface IFolderCardProps {
   linkName?: string;
   name?: string;
 }
+
+export type IFolderDetailType = {
+  createdBy: {
+    stringVaue: string
+  },
+  id: {
+    stringValue: string;
+  },
+  name: {
+    stringValue: string;
+  }
+}
