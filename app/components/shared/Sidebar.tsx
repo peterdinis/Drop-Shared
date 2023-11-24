@@ -1,15 +1,15 @@
 "use client";
 
-import { FC, useState, useCallback } from "react";
+import { FC, useState } from "react";
 import classNames from "classnames";
-import { FileJson, Folder, XCircle, Menu, LogOut, Server } from "lucide-react";
+import { FileJson, Folder, XCircle, Menu, LogOut } from "lucide-react";
 import { useAuth } from "../../hooks/useAuthContent";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import AppModal from "./AppModal";
 import { Button } from "@/components/ui/button";
 import { Tooltip } from "@mui/material";
-import { db, storage } from "@/app/lib/firebaseConfig";
+import { db } from "@/app/lib/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import SmallHeader from "./SmallHeader";
 import { v4 as uuid } from "uuid";
@@ -105,15 +105,6 @@ const Sidebar: FC = () => {
                     Logout
                   </Button>
                 </div>{" "}
-                <div className="mt-8">
-                  <AppModal
-                    icon={<Server />}
-                    btnName={"Avaiable Storage"}
-                    headerName={"Avaiable Storage"}
-                  >
-                    <br />
-                  </AppModal>
-                </div>{" "}
               </div>
             </div>
           </>
@@ -162,11 +153,6 @@ const Sidebar: FC = () => {
                   <Button onClick={logoutUser} variant={"ghost"} size={"sm"}>
                     <LogOut />
                   </Button>
-                </Tooltip>
-              </div>
-              <div className="mt-8">
-                <Tooltip title="Avaiable storage">
-                  <AppModal icon={<Server />}>ddd</AppModal>
                 </Tooltip>
               </div>
             </div>
