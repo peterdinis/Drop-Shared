@@ -20,6 +20,10 @@ const FolderDetailContent: FC<IFolderProps> = ({folderInfo}: IFolderProps) => {
         <Folder /> <span>{folderInfo.name?.stringValue}</span> <br />
         <span>Created by: {folderInfo.createdBy?.stringValue}</span>
       </div>
+
+      <div className="mt-5">
+        files in this folder....
+      </div>
     </div>
   );
 };

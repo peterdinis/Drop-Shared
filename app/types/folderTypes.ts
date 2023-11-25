@@ -11,7 +11,7 @@ export interface IFolderCardProps {
 
 export type IFolderDetailType = {
   createdBy: {
-    stringVaue: string
+    stringValue: string
   },
   id: {
     stringValue: string;
