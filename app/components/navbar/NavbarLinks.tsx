@@ -1,13 +1,12 @@
 "use client"
 
 
-import {FC} from "react";
+import { FC } from "react";
 import Link from "next/link";
-import Cookies from "js-cookie";
+import { useAuth } from "@/app/hooks/useAuthContent";
 
 const NavbarLinks: FC = () => {
-  const userCredentialsString = Cookies.get("userCredentials");
-  const currentUser = userCredentialsString ? JSON.parse(userCredentialsString) : null;
+  const { currentUser } = useAuth();
 
   return (
     <>
