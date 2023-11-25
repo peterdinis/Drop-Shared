@@ -13,6 +13,7 @@ import { db } from "@/app/lib/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import SmallHeader from "./SmallHeader";
 import { v4 as uuid } from "uuid";
+import Cookies from "js-cookie";
 
 const Sidebar: FC = () => {
   const { currentUser } = useAuth();
@@ -27,6 +28,7 @@ const Sidebar: FC = () => {
   const logoutUser = () => {
     logout();
     toast.success("Logout successfull");
+    Cookies.remove("userCredentials");
     router.push("/login");
   };
 

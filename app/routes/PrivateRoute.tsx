@@ -9,6 +9,8 @@ const PrivateRoute = <T extends object>(WrappedComponent: ComponentType<T>) => {
     const router = useRouter();
     const getUserCookie = Cookies.get("userCredentials");
 
+    console.log(getUserCookie);
+
     useEffect(() => {
       if (!getUserCookie) {
         router.push("/login");
