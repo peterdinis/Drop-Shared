@@ -1,9 +1,9 @@
-"use client"
-
+"use client";
 
 import { FC } from "react";
 import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuthContent";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const NavbarLinks: FC = () => {
   const { currentUser } = useAuth();
@@ -12,7 +12,10 @@ const NavbarLinks: FC = () => {
     <>
       {currentUser && currentUser.email ? (
         <>
-          <span className="ml-4 font-bold">{currentUser.email}</span>
+          <Avatar>
+            <AvatarImage src={currentUser?.photoURL} />
+            <AvatarFallback>User</AvatarFallback>
+          </Avatar>
         </>
       ) : (
         <>
