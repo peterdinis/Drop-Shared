@@ -25,7 +25,7 @@ const FolderCard: FC<IFolderCardProps> = ({
             className="text-black"
             href={`/folder/${linkName}`}
           >
-            <Folder /> {name}
+            <Folder /> <span className="mt-4">{name}</span>
           </Link>
         </h1>
         <BadgeX onClick={deleteFileFN} />

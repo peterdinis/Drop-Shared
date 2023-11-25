@@ -5,10 +5,8 @@ import { Folder } from "lucide-react";
 import { IFolderDetailType } from "@/app/types/folderTypes";
 
 interface IFolderProps {
-  folderInfo: IFolderDetailType | any; 
+  folderInfo: IFolderDetailType;
 }
-
-/* TODO: Later display here more information */
 
 const FolderDetailContent: FC<IFolderProps> = ({folderInfo}: IFolderProps) => {
   return (

@@ -15,7 +15,7 @@ const FolderDetail: FC = () => {
 
   const getFolderInfo = getDoc(doc(db, `Folders/${id}`));
 
-  getFolderInfo.then((data: any) =>{
+  getFolderInfo.then((data: any) => {
     setFolderInfo(data._document?.data.value.mapValue.fields);
   });
 
