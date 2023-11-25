@@ -15,7 +15,6 @@ const Hero: FC = () => {
   };
 
   return (
-    <>
       <Container className="flex flex-wrap">
         <div className="flex items-center w-full lg:w-1/2">
           <div className="max-W-2xl mb-8">
@@ -46,7 +45,6 @@ const Hero: FC = () => {
           />
         </div>
       </Container>
-    </>
   );
 };
 
