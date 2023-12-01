@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import Header from "../shared/Header";
-import FolderLists from "../files/FolderLists";
+import FileLists from "../files/FileLists";
 import ScrollToTop from "react-scroll-to-top";
 
 const DashboardContent: FC = () => {
@@ -11,7 +11,7 @@ const DashboardContent: FC = () => {
       <Header text="Your uploaded files" />
       <br />
       <section className="mt-8">
-        <FolderLists />
+        <FileLists />
       </section>
       <ScrollToTop smooth={true} />
     </div>
