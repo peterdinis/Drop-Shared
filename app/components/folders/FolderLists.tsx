@@ -25,7 +25,7 @@ const FolderLists: FC = () => {
 
   return (
     <div className="container my-12 mx-auto px-4 md:px-12">
-      <div className="flex flex-wrap -mx-1 lg:-mx-4">
+      {/* <div className="flex flex-wrap -mx-1 lg:-mx-4">
         {folders.map((folder: IFolderType) => (
           <div
             key={folder.id}
@@ -34,7 +34,8 @@ const FolderLists: FC = () => {
             <FolderCard linkName={folder.id} name={folder.name} />
           </div>
         ))}
-      </div>
+      </div> */}
+      rorororo
     </div>
   );
 };
