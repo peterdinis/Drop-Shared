@@ -82,7 +82,7 @@ const Sidebar: FC = () => {
                     </form>
                   </AppModal>
                 </div>{" "}
-                <div className="mt-8">
+               {/*  <div className="mt-8">
                   <AppModal
                     icon={<Folder />}
                     btnName={"New folder"}
@@ -100,7 +100,7 @@ const Sidebar: FC = () => {
                       </div>
                     </form>
                   </AppModal>
-                </div>{" "}
+                </div>{" "} */}
                 <div className="mt-8">
                   <Button variant={"ghost"} value="sm" onClick={logoutUser}>
                     <LogOut onClick={logoutUser} />
@@ -131,7 +131,7 @@ const Sidebar: FC = () => {
                 </Tooltip>
               </div>{" "}
               <br />
-              <div>
+              {/* <div>
                 <Tooltip title="Add new folder">
                   <AppModal tooltipName="Add new folder" icon={<Folder />}>
                     <SmallHeader text="Upload new folder" />
@@ -149,7 +149,7 @@ const Sidebar: FC = () => {
                     </form>
                   </AppModal>
                 </Tooltip>
-              </div>{" "}
+              </div>{" "} */}
               <div className="mt-8">
                 <Tooltip title="Logout">
                   <Button onClick={logoutUser} variant={"ghost"} size={"sm"}>
