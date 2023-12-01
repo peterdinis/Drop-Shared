@@ -1,17 +1,17 @@
-import { FC, useEffect, useState } from "react";
-import FolderCard from "./FolderCard";
+import { FC} from "react";
+/* import FolderCard from "./FolderCard";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/app/lib/firebaseConfig";
-import { IFolderType } from "@/app/types/folderTypes";
+import Dropzone from 'react-dropzone' */
 
-/* TODO: Later add condition for display files by specific user and update folder detail */
 
 const FolderLists: FC = () => {
-  const [folders, setFolders] = useState([]);
+ /*  const [folders, setFolders] = useState([]);
 
-  const docRef = collection(db, "Folders");
+  const docRef = collection(db, "Folders"); */
 
-  useEffect(() => {
+  /* Maybe use later */
+ /*  useEffect(() => {
     const unsubscribe = onSnapshot(docRef, (querySnapshot) => {
       const foldersData = [] as any;
       querySnapshot.forEach((doc) => {
@@ -22,7 +22,7 @@ const FolderLists: FC = () => {
     });
     return () => unsubscribe();
   }, []);
-
+ */
   return (
     <div className="container my-12 mx-auto px-4 md:px-12">
       {/* <div className="flex flex-wrap -mx-1 lg:-mx-4">

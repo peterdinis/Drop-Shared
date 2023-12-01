@@ -9,7 +9,7 @@ import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: 'Drop-Shared',
-  description: 'abc',
+  description: 'Application for uploading / sharing files',
 }
 
 export const fontSans = FontSans({
