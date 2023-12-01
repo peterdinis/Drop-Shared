@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import Header from "../shared/Header";
-import FolderLists from "../folders/FolderLists";
+import FolderLists from "../files/FolderLists";
 import ScrollToTop from "react-scroll-to-top";
 
 const DashboardContent: FC = () => {
