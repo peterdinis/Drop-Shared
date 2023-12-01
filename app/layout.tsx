@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import Navbar from "./components/navbar/Navbar";
 import AuthContextProvider from "./providers/UserProvider";
 import { Toaster } from "react-hot-toast";
-import {RecoilRoot} from "recoil";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -24,11 +23,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         )}
       >
         <AuthContextProvider>
-          <RecoilRoot>
           <Navbar />
           {children}
           <Toaster />
-          </RecoilRoot>
         </AuthContextProvider>
       </body>
     </html>
