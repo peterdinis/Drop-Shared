@@ -10,11 +10,13 @@ const NavbarLinks: FC = () => {
 
   return (
     <>
-      {currentUser && currentUser.email ? (
+      {currentUser ? (
         <>
           <Avatar>
-          <AvatarImage src={currentUser?.photoURL} />
-            <AvatarFallback>User</AvatarFallback>
+            <Link href="/dashboard">
+              <AvatarImage src={currentUser?.photoURL as unknown as string} />
+              <AvatarFallback>User</AvatarFallback>
+            </Link>
           </Avatar>
         </>
       ) : (

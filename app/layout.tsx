@@ -1,5 +1,4 @@
-"use client"
-
+import type { Metadata } from 'next'
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
@@ -7,7 +6,11 @@ import { cn } from "@/lib/utils";
 import Navbar from "./components/navbar/Navbar";
 import AuthContextProvider from "./providers/UserProvider";
 import { Toaster } from "react-hot-toast";
-import {RecoilRoot} from "recoil";
+
+export const metadata: Metadata = {
+  title: 'Drop-Shared',
+  description: 'Application for uploading / sharing files',
+}
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -24,11 +27,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         )}
       >
         <AuthContextProvider>
-          <RecoilRoot>
           <Navbar />
           {children}
           <Toaster />
-          </RecoilRoot>
         </AuthContextProvider>
       </body>
     </html>
