@@ -3,12 +3,14 @@ import SmallHeader from "../shared/SmallHeader";
 
 const FileTable: FC = () => {
     return (
-        <>
+        <div className="border-t">
          <SmallHeader text="Your uploaded files" />
          <div className="mt-3">
-            FILES...
+            <section className="container space-y-5">
+                rrr
+            </section>
          </div>
-        </>
+        </div>
     )
 }
 
