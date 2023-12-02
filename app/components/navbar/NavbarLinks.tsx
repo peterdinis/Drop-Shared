@@ -10,7 +10,7 @@ const NavbarLinks: FC = () => {
 
   return (
     <>
-      {currentUser && currentUser.email ? (
+      {currentUser ? (
         <>
           <Avatar>
             <Link href="/dashboard">
