@@ -1,21 +1,65 @@
+"use client"
+
+import { useAuth } from "@/app/hooks/useAuthContent";
 import { cn } from "@/lib/utils";
-import React, { FC } from "react";
+import { FC, useState } from "react";
 import Dropzone from "react-dropzone";
+import { db, storage } from "@/app/lib/firebaseConfig";
+import {toast} from "react-hot-toast";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const FileDropzone: FC = () => {
   const maxSize = 20971520;
+
+  const [loading, setLoading] = useState(false);
+
+  const {currentUser} = useAuth();
+
+  const uploadFile = async (selectedFile: File) =>{
+    if(loading) return;
+    if(!currentUser) return;
+
+    setLoading(true);
+
+    // Upload file to firebase bucket
+
+    const docRef = await addDoc(collection(db, 'users', currentUser?.uid, 'files'), {
+      userId: currentUser?.uid,
+      filename: selectedFile.name,
+      email: currentUser?.email,
+      timestamp: serverTimestamp(),
+      type: selectedFile.type,
+      size: selectedFile.size
+    })
+
+    toast.success('File was uploaded')
+
+    setLoading(false);
+  }
+
+  const onDropFile = (acceptedFiles: File[]) =>{
+    acceptedFiles.forEach((file => {
+      const reader = new FileReader();
+
+      reader.onabort = () => console.log("File reading was aborted");
+      reader.onerror = () => console.log("File reading failed");
+
+      reader.onload = async() => {
+        await uploadFile(file);
+      }
+
+      reader.readAsArrayBuffer(file);
+    }))
+  }
 
   return (
     <>
       <Dropzone
         minSize={0}
         maxSize={maxSize}
-        onDrop={(acceptedFiles, fileRejections) => {
-          console.log("Accepted files:", acceptedFiles);
-        
-        }}
+        onDrop={onDropFile}
       >
-        {({ getRootProps, fileRejections, getInputProps, isDragActive, isDragReject }) => (
+        {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
           <section className="m-4">
             <div className={cn("w-full h-52 flex justify-center items-center p-5 border border-dashed rounded-lg textcenter", isDragActive ? "bg-[#035FFE] text-white animate-pulse" : "bg-slate-100/50 dark:bg-slate-8000/80 text-slate-400")} {...getRootProps()}>
               <input {...getInputProps()} />
