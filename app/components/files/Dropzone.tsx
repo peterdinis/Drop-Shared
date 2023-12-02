@@ -6,7 +6,8 @@ import { FC, useState } from "react";
 import Dropzone from "react-dropzone";
 import { db, storage } from "@/app/lib/firebaseConfig";
 import {toast} from "react-hot-toast";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const FileDropzone: FC = () => {
   const maxSize = 20971520;
@@ -21,7 +22,7 @@ const FileDropzone: FC = () => {
 
     setLoading(true);
 
-    // Upload file to firebase bucket
+    // Upload file to firebase
 
     const docRef = await addDoc(collection(db, 'users', currentUser?.uid, 'files'), {
       userId: currentUser?.uid,
@@ -32,7 +33,20 @@ const FileDropzone: FC = () => {
       size: selectedFile.size
     })
 
-    toast.success('File was uploaded')
+    toast.success('File was uploaded');
+
+    const imageRef = ref(storage, `users/${currentUser.uid}/files/${docRef.id}`)
+    
+    await uploadBytes(imageRef, selectedFile).then(async(snapshot) =>{
+      // download url
+      const downloadURL = await getDownloadURL(imageRef);
+
+      // update original doc with download url
+
+      await updateDoc(doc(db, 'users', currentUser?.uid, 'files', docRef.id), {
+        
+      })
+    })
 
     setLoading(false);
   }
