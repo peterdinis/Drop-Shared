@@ -2,14 +2,19 @@ import React, { FC } from "react";
 import Dropzone from "react-dropzone";
 
 const FileDropzone: FC = () => {
+  const maxSize = 20971520;
+
   return (
     <>
-      <Dropzone onDrop={(acceptedFiles) => console.log(acceptedFiles)}>
-        {({ getRootProps, getInputProps }) => (
+      <Dropzone minSize={0} onDrop={(acceptedFiles) => console.log(acceptedFiles)}>
+        {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
           <section>
             <div {...getRootProps()}>
               <input {...getInputProps()} />
-              <p>Drag 'n' drop some files here, or click to select files</p>
+              {!isDragActive && "Click here and drop file for upload"}
+              {isDragActive && !isDragReject && "Drop to upload this file"}
+              {isDragReject && "File is not accepted"}
+              {}
             </div>
           </section>
         )}
