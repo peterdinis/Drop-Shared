@@ -10,7 +10,7 @@ const PrivateRoute = <T extends object>(WrappedComponent: ComponentType<T>) => {
     const getUserCookie = Cookies.get("userCredentials");
 
     useEffect(() => {
-      if (getUserCookie !== null) {
+      if (!getUserCookie) {
         router.push("/login");
       }
     }, [getUserCookie]);

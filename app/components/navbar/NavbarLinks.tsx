@@ -7,8 +7,6 @@ import { useAuth } from "@/app/hooks/useAuthContent";
 const NavbarLinks: FC = () => {
   const { currentUser } = useAuth();
 
-  console.log(currentUser);
-
   return (
     <>
       {currentUser !== null ? (
