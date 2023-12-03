@@ -8,7 +8,7 @@ import ScrollToTop from "react-scroll-to-top";
 const DashboardContent: FC = () => {
   return (
     <div className="ml-5 py-4 px-8 flex-growtext-center flex-1">
-      <Header text="Your uploaded files" />
+      <Header text="Upload file" />
       <br />
       <section className="mt-8">
         <FileLists />
