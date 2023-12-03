@@ -8,7 +8,7 @@ const FileTable: FC = () => {
       <SmallHeader text="Your uploaded files" />
       <div className="mt-3">
         <section className="container space-y-5">
-          <Button>Sort  by...</Button>
+          <Button>Sort  by</Button>
         </section>
       </div>
     </div>

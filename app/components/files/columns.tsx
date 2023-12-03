@@ -1,23 +1,23 @@
-import { ColumnDef } from "@tanstack/react-table"
- 
-export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
-}
- 
-export const columns: ColumnDef<Payment>[] = [
+import { FileType } from "@/app/types/fileTypes";
+import { ColumnDef } from "@tanstack/react-table";
+import prettyBytes from 'pretty-bytes';
+
+export const columns: ColumnDef<FileType>[] = [
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "filename",
+    header: "Filename",
   },
+
   {
-    accessorKey: "email",
-    header: "Email",
+    accessorKey: "timestamp",
+    header: "Timestamp",
   },
+
   {
-    accessorKey: "amount",
-    header: "Amount",
-  },
-]
+    accessorKey: "size",
+    header: "Size",
+    cell: ({renderValue, ...props}) => {
+      return <span>{prettyBytes(renderValue() as number)}</span>
+    }
+  }
+];
