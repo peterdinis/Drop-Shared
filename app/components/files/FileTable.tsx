@@ -7,9 +7,9 @@ const FileTable: FC = () => {
   return (
     <div className="border-t">
       <SmallHeader text="Your uploaded files" />
-      <div className="mt-3">
+      <div>
         <section className="container space-y-5">
-          <Button>Sort  by</Button>
+          <Button>Sort by</Button>
           <DataTable columns={[]} data={[]} />
         </section>
       </div>

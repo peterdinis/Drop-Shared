@@ -2,7 +2,7 @@
 
 import { FC, useState } from "react";
 import classNames from "classnames";
-import { FileJson, Folder, XCircle, Menu, LogOut } from "lucide-react";
+import { FileJson,  XCircle, Menu, LogOut } from "lucide-react";
 import { useAuth } from "../../hooks/useAuthContent";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -20,7 +20,9 @@ const Sidebar: FC = () => {
   const logoutUser = () => {
     logout();
     toast.success("Logout successfull");
-    Cookies.remove("userCredentials");
+    Cookies.remove("userCredentials", {
+
+    });
     router.push("/login");
   };
 
