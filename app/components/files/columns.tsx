@@ -5,9 +5,8 @@ import Link from "next/link";
 import prettyBytes from "pretty-bytes";
 import { FileIcon, defaultStyles } from "react-file-icon";
 
-// Function to get color from extension, with a default color as fallback
 const getColorForExtension = (extension: string): string => {
-  return COLOR_EXTENSION_MAP[extension] || "#000000"; // Default color is black if not found
+  return COLOR_EXTENSION_MAP[extension] || "#000000";
 };
 
 export const columns: ColumnDef<FileType>[] = [
@@ -21,7 +20,7 @@ export const columns: ColumnDef<FileType>[] = [
         <div className="w-10">
           <FileIcon
             extension={extension}
-            labelColor={getColorForExtension(extension)} // Get color using the function
+            labelColor={getColorForExtension(extension)}
             // @ts-ignore
             {...defaultStyles(extension)}
           />
