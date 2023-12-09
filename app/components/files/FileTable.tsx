@@ -2,6 +2,7 @@ import { FC } from "react";
 import SmallHeader from "../shared/SmallHeader";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "./TableWrapper";
+import { columns } from "./columns";
 
 const FileTable: FC = () => {
   return (
