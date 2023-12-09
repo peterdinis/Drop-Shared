@@ -1,14 +1,10 @@
-import { FC, ReactNode } from "react";
+import { ContainerType } from "@/app/types/sharedTypes";
+import { FC} from "react";
 
-interface IContainerProps {
-  children?: ReactNode;
-  className: string;
-}
-
-const Container: FC<IContainerProps> = ({
+const Container: FC<ContainerType> = ({
   children,
   className,
-}: IContainerProps) => {
+}: ContainerType) => {
   return (
     <div
       className={`container p-8 mx-auto xl:px-0 ${className ? className : ""}`}
