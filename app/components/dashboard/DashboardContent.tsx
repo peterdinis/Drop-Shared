@@ -10,7 +10,7 @@ const DashboardContent: FC = () => {
     <div className="ml-5 py-4 px-8 flex-growtext-center flex-1">
       <Header text="Upload file" />
       <br />
-      <section className="mt-8">
+      <section>
         <FileLists />
       </section>
       <ScrollToTop smooth={true} />

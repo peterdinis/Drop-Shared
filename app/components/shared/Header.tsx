@@ -1,12 +1,9 @@
 "use client";
 
+import { HeaderType } from "@/app/types/sharedTypes";
 import { FC } from "react";
 
-interface IHeaderProps {
-  text: string;
-}
-
-const Header: FC<IHeaderProps> = ({ text }: IHeaderProps) => {
+const Header: FC<HeaderType> = ({ text }: HeaderType) => {
   return (
       <h2 className="mt-10 pb-2 text-3xl text-center font-semibold tracking-tight transition-colors">
         {text}
