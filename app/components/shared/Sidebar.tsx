@@ -2,12 +2,13 @@
 
 import { FC, useState } from "react";
 import classNames from "classnames";
-import { XCircle, Menu, LogOut } from "lucide-react";
+import { XCircle, Menu, LogOut, Upload, Files } from "lucide-react";
 import { useAuth } from "../../hooks/useAuthContent";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Tooltip } from "@mui/material";
+import Link from "next/link";
 import Cookies from "js-cookie";
 
 const Sidebar: FC = () => {
@@ -19,9 +20,7 @@ const Sidebar: FC = () => {
   const logoutUser = () => {
     logout();
     toast.success("Logout successfull");
-    Cookies.remove("userCredentials", {
-
-    });
+    Cookies.remove("userCredentials", {});
     router.push("/login");
   };
 
@@ -53,6 +52,20 @@ const Sidebar: FC = () => {
                   </Button>
                 </div>{" "}
               </div>
+
+              <div className="mt-8">
+                <Button variant={"ghost"} value="sm">
+                  <Upload />
+                  <Link href="/upload">Upload new file</Link>
+                </Button>
+              </div>
+
+              <div className="mt-8">
+                <Button variant={"ghost"} value="sm">
+                  <Upload />
+                  <Link href="/files">My all files</Link>
+                </Button>
+              </div>
             </div>
           </>
         ) : (
@@ -62,6 +75,24 @@ const Sidebar: FC = () => {
                 <Tooltip title="Logout">
                   <Button onClick={logoutUser} variant={"ghost"} size={"sm"}>
                     <LogOut />
+                  </Button>
+                </Tooltip>
+              </div>
+              <div className="mt-8">
+                <Tooltip title="Upload file">
+                  <Button variant={"ghost"} size={"sm"}>
+                    <Link href="/upload">
+                      <Upload />
+                    </Link>
+                  </Button>
+                </Tooltip>
+              </div>
+              <div className="mt-8">
+                <Tooltip title="My files">
+                  <Button variant={"ghost"} size={"sm"}>
+                    <Link href="/files">
+                      <Files />
+                    </Link>
                   </Button>
                 </Tooltip>
               </div>

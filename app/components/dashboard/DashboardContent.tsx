@@ -1,19 +1,17 @@
-"use client";
-
 import { FC } from "react";
 import Header from "../shared/Header";
-import FileLists from "../files/FileLists";
-import ScrollToTop from "react-scroll-to-top";
+import { useAuth } from "@/app/hooks/useAuthContent";
 
 const DashboardContent: FC = () => {
+  const {currentUser} = useAuth();
+
   return (
     <div className="ml-5 py-4 px-8 flex-growtext-center flex-1">
-      <Header text="Upload file" />
+      <Header text="My Dashboard" />
       <br />
-      <section>
-        <FileLists />
-      </section>
-      <ScrollToTop smooth={true} />
+      <div className="mt-5">
+        <h1>Hello: {currentUser?.email}</h1>
+      </div>
     </div>
   );
 };
