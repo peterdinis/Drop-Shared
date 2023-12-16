@@ -1,11 +1,8 @@
 import { NextPage } from "next";
+import FileLists from "../components/files/FileLists";
 
 const AllFilesPage: NextPage = () => {
-    return (
-        <>
-         All Files
-        </>
-    )
+    return <FileLists />
 }
 
 export default AllFilesPage;

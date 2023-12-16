@@ -7,6 +7,10 @@ const UploadForm: FC = () => {
 
   const [file, setFile] = useState<File |null>(null);
 
+  const handleUploadFile = (e) => {
+    setFile(e.target.files[0]!);
+  }
+
   return (
     <>
       <div className="flex items-center justify-center w-full">
@@ -38,10 +42,10 @@ const UploadForm: FC = () => {
               SVG, PNG, JPG or GIF (MAX. 800x400px)
             </p>
           </div>
-          <input onChange={(e) => setFile(e.target.files![0])} id="dropzone-file" type="file" className="hidden" />
+          <input onChange={handleUploadFile} id="dropzone-file" type="file" className="hidden" />
         </label>
       </div>
-      <Button  className="mt-5">Upload </Button>
+      <Button disabled={!file} className="mt-5">Upload </Button>
     </>
   );
 };
