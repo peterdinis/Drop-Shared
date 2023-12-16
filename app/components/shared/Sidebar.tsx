@@ -2,7 +2,7 @@
 
 import { FC, useState } from "react";
 import classNames from "classnames";
-import { XCircle, Menu, LogOut, Upload } from "lucide-react";
+import { XCircle, Menu, LogOut, Upload, Files } from "lucide-react";
 import { useAuth } from "../../hooks/useAuthContent";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -59,6 +59,13 @@ const Sidebar: FC = () => {
                   <Link href="/upload">Upload new file</Link>
                 </Button>
               </div>
+
+              <div className="mt-8">
+                <Button variant={"ghost"} value="sm">
+                  <Upload />
+                  <Link href="/files">My all files</Link>
+                </Button>
+              </div>
             </div>
           </>
         ) : (
@@ -76,6 +83,15 @@ const Sidebar: FC = () => {
                   <Button variant={"ghost"} size={"sm"}>
                     <Link href="/upload">
                       <Upload />
+                    </Link>
+                  </Button>
+                </Tooltip>
+              </div>
+              <div className="mt-8">
+                <Tooltip title="My files">
+                  <Button variant={"ghost"} size={"sm"}>
+                    <Link href="/files">
+                      <Files />
                     </Link>
                   </Button>
                 </Tooltip>
