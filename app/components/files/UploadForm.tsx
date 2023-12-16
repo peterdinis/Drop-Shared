@@ -2,13 +2,20 @@
 
 import { Button } from "@/components/ui/button";
 import { FC, useState } from "react";
+import {toast} from "react-hot-toast";
 
 const UploadForm: FC = () => {
 
   const [file, setFile] = useState<File |null>(null);
 
   const handleUploadFile = (e) => {
+    if(e.target.files[0]!?.size > 200000) {
+        toast.error("File is too big");
+        return;
+    }
+
     setFile(e.target.files[0]!);
+    toast.success("File was uploaded");
   }
 
   return (
