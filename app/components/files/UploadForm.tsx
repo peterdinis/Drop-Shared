@@ -9,6 +9,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import ProgressBar from "./ProgressBar";
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -118,6 +119,10 @@ const UploadForm: FC = () => {
       <Button disabled={!file} className="mt-5">
         Upload{" "}
       </Button>
+      <div className="mt-6">
+        <ProgressBar />
+      </div>
+
     </>
   );
 };
