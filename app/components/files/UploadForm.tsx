@@ -1,22 +1,80 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/ui/button";
 import { FC, useState } from "react";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
+import { storage } from "@/app/lib/firebaseConfig";
+import {
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 const UploadForm: FC = () => {
+  const [file, setFile] = useState<File | null>(null);
 
-  const [file, setFile] = useState<File |null>(null);
+  const imageRef = ref(storage, `file-upload/${file?.name}`);
 
-  const handleUploadFile = (e) => {
-    if(e.target.files[0]!?.size > 200000) {
-        toast.error("File is too big");
-        return;
+  const metadata = {
+    contentType: file?.type,
+  };
+  const uploadTask = uploadBytesResumable(
+    imageRef,
+    file as unknown as Blob,
+    metadata
+  );
+
+  // Listen for state changes, errors, and completion of the upload.
+  uploadTask.on(
+    "state_changed",
+    (snapshot) => {
+      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log("Upload is " + progress + "% done");
+      switch (snapshot.state) {
+        case "paused":
+          console.log("Upload is paused");
+          break;
+        case "running":
+          console.log("Upload is running");
+          break;
+      }
+    },
+    (error) => {
+      // A full list of error codes is available at
+      // https://firebase.google.com/docs/storage/web/handle-errors
+      switch (error.code) {
+        case "storage/unauthorized":
+          // User doesn't have permission to access the object
+          break;
+        case "storage/canceled":
+          // User canceled the upload
+          break;
+
+        // ...
+
+        case "storage/unknown":
+          // Unknown error occurred, inspect error.serverResponse
+          break;
+      }
+    },
+    () => {
+      // Upload completed successfully, now we can get the download URL
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        console.log("File available at", downloadURL);
+      });
+    }
+  );
+
+  const handleUploadFile = (e: any) => {
+    if (e.target.files[0]!?.size > 200000) {
+      toast.error("File is too big");
+      return;
     }
 
     setFile(e.target.files[0]!);
     toast.success("File was uploaded");
-  }
+  };
 
   return (
     <>
@@ -49,10 +107,17 @@ const UploadForm: FC = () => {
               SVG, PNG, JPG or GIF (MAX. 800x400px)
             </p>
           </div>
-          <input onChange={handleUploadFile} id="dropzone-file" type="file" className="hidden" />
+          <input
+            onChange={handleUploadFile}
+            id="dropzone-file"
+            type="file"
+            className="hidden"
+          />
         </label>
       </div>
-      <Button disabled={!file} className="mt-5">Upload </Button>
+      <Button disabled={!file} className="mt-5">
+        Upload{" "}
+      </Button>
     </>
   );
 };
