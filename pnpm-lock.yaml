@@ -41,6 +41,9 @@ dependencies:
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
+  compress.js:
+    specifier: ^1.2.2
+    version: 1.2.2
   firebase:
     specifier: ^10.6.0
     version: 10.6.0
@@ -53,9 +56,6 @@ dependencies:
   next:
     specifier: ^14.0.4
     version: 14.0.4(react-dom@18.2.0)(react@18.2.0)
-  pretty-bytes:
-    specifier: ^6.1.1
-    version: 6.1.1
   react:
     specifier: ^18
     version: 18.2.0
@@ -82,6 +82,9 @@ devDependencies:
   '@types/classnames':
     specifier: ^2.3.1
     version: 2.3.1
+  '@types/compress.js':
+    specifier: ^1.1.3
+    version: 1.1.3
   '@types/js-cookie':
     specifier: ^3.0.6
     version: 3.0.6
@@ -1635,6 +1638,10 @@ packages:
       classnames: 2.3.2
     dev: true
 
+  /@types/compress.js@1.1.3:
+    resolution: {integrity: sha512-3uflodXzp7qcfxCwbkZ0KrqwgLIXzR/0IHoJvLfWmFXCDrB85aVSZFElsVkAm8ng227oFpNLFT4yWnm0Ozfhfw==}
+    dev: true
+
   /@types/js-cookie@3.0.6:
     resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
     dev: true
@@ -2076,6 +2083,12 @@ packages:
   /commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
     engines: {node: '>= 6'}
+
+  /compress.js@1.2.2:
+    resolution: {integrity: sha512-eIsMmzyBtPVDdPtpmPXTRB6uiLjgTXygYl0KCVVp0I/U/++YzZtEkhVTuWH97dzTxKvzAcZMFwYUHGC09BSUqg==}
+    dependencies:
+      regenerator-runtime: 0.13.11
+    dev: false
 
   /concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
@@ -3606,11 +3619,6 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /pretty-bytes@6.1.1:
-    resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
-    engines: {node: ^14.13.1 || >=16.0.0}
-    dev: false
-
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
     dependencies:
@@ -3727,6 +3735,10 @@ packages:
       globalthis: 1.0.3
       which-builtin-type: 1.1.3
     dev: true
+
+  /regenerator-runtime@0.13.11:
+    resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
+    dev: false
 
   /regenerator-runtime@0.14.0:
     resolution: {integrity: sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==}

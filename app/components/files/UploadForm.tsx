@@ -10,12 +10,31 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import ProgressBar from "./ProgressBar";
+import Compress from "compress.js";
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [progress, setProgress] = useState(0);
 
+  const compress = new Compress();
+
   const imageRef = ref(storage, `file-upload/${file?.name}`);
+
+  async function resizeImageFn(file: File) {
+
+    const resizedImage = await compress.compress([file], {
+      size: 2, // the max size in MB, defaults to 2MB
+      quality: 1, // the quality of the image, max is 1,
+      maxWidth: 300, // the max width of the output image, defaults to 1920px
+      maxHeight: 300, // the max height of the output image, defaults to 1920px
+      resize: true // defaults to true, set false if you do not want to resize the image width and height
+    })
+    const img = resizedImage[0];
+    const base64str = img.data
+    const imgExt = img.ext
+    const resizedFiile = Compress.convertBase64ToFile(base64str, imgExt)
+    return resizedFiile;
+  }
 
   const metadata = {
     contentType: file?.type,
