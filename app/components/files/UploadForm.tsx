@@ -45,6 +45,8 @@ const UploadForm: FC = () => {
     metadata
   );
 
+  resizeImageFn(uploadTask as unknown as File);
+
   // Listen for state changes, errors, and completion of the upload.
   uploadTask.on(
     "state_changed",
