@@ -108,11 +108,11 @@ const UploadForm: FC = () => {
     toast.success("File was uploaded");
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     setTimeout(() => {
       router.push("/file-preview" + docId)
     }, 2000)  
-  }, []);
+  }, []); */
 
   return (
     <>
