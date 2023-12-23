@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { FC, useState } from "react";
 import { toast } from "react-hot-toast";
-import { storage } from "@/app/lib/firebaseConfig";
+import { storage, db } from "@/app/lib/firebaseConfig";
 import {
   ref,
   uploadBytesResumable,
@@ -11,7 +11,7 @@ import {
 } from "firebase/storage";
 import Compress from "compress.js";
 import { Upload } from "lucide-react";
-import { serverTimestamp } from "firebase/firestore";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -75,8 +75,12 @@ const UploadForm: FC = () => {
     }
   );
 
-  const saveFile = () => {
+  const saveFile = async () => {
     const docId = serverTimestamp();
+    await setDoc(doc(db, 'uploadFile', 'La'), {
+      name: "",
+      state: ""
+    })
   }
 
   const handleUploadFile = (e: any) => {
