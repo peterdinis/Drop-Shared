@@ -126,10 +126,6 @@ const UploadForm: FC = () => {
       <Button disabled={!file} className="mt-5">
         Upload{" "}
       </Button>
-      <div className="mt-6">
-        <ProgressBar progress={progress} />
-      </div>
-
     </>
   );
 };

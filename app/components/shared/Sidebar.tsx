@@ -62,7 +62,7 @@ const Sidebar: FC = () => {
 
               <div className="mt-8">
                 <Button variant={"ghost"} value="sm">
-                  <Upload />
+                  <Files />
                   <Link href="/files">My all files</Link>
                 </Button>
               </div>
