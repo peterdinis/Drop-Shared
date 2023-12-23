@@ -143,7 +143,7 @@ const UploadForm: FC = () => {
         </label>
       </div>
       <div className="mt-5">
-        {!file && <FileDisplayPreview />}
+        {file? <FileDisplayPreview file={file as unknown as File} /> : null}
       </div>
       <br />
       <Button disabled={!file} className="mt-5">
