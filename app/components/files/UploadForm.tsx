@@ -11,11 +11,16 @@ import {
 } from "firebase/storage";
 import Compress from "compress.js";
 import { Upload } from "lucide-react";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import {  doc,serverTimestamp,setDoc } from "firebase/firestore";
+import { useAuth } from "@/app/hooks/useAuthContent";
+import { UploadedFile } from "@/app/types/fileTypes";
+import { generateRandomString } from "@/app/utils/randomString";
+
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [, setProgress] = useState(0);
+  const {currentUser} = useAuth();
 
   const compress = new Compress();
 
@@ -75,13 +80,22 @@ const UploadForm: FC = () => {
     }
   );
 
-  const saveFile = async () => {
-    const docId = serverTimestamp();
-    await setDoc(doc(db, 'uploadFile', 'La'), {
-      name: "",
-      state: ""
-    })
-  }
+  const saveFile = async (file: File, fileUrl: string) => {
+    const docId = serverTimestamp() as unknown as string;
+
+    const fileDocRef = doc(db, 'uploadedFile', docId);
+    
+    const fileData: UploadedFile = {
+        fileName: file.name,
+        fileSize: file.size,
+        fileType: file.type,
+        fileUrl,
+        userEmail: currentUser?.email!,
+        shortUrl: process.env.NEXT_PUBLIC_BASE_URL as unknown as string + generateRandomString(13)
+    };
+
+    await setDoc(fileDocRef, fileData);
+};
 
   const handleUploadFile = (e: any) => {
     if (e.target.files[0]!?.size > 200000) {
