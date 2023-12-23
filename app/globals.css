@@ -24,6 +24,16 @@ html::-webkit-scrollbar-track {
   background: linear-gradient(90deg, #434343, #434343 1px, #111 0, #111);
 }
 
+@media (max-width: 768px) {
+  .flex-wrap {
+      display: flex;
+      flex-wrap: wrap;
+  }
+  .section-small {
+      width: 50%;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
