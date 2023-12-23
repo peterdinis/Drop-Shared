@@ -16,6 +16,7 @@ import {  doc,serverTimestamp,setDoc } from "firebase/firestore";
 import { useAuth } from "@/app/hooks/useAuthContent";
 import { UploadedFile } from "@/app/types/fileTypes";
 import { generateRandomString } from "@/app/utils/randomString";
+import FileDisplayPreview from "./FIleDisplayPreview";
 
 
 const UploadForm: FC = () => {
@@ -141,6 +142,10 @@ const UploadForm: FC = () => {
           />
         </label>
       </div>
+      <div className="mt-5">
+        {!file && <FileDisplayPreview />}
+      </div>
+      <br />
       <Button disabled={!file} className="mt-5">
         Upload{" "}
       </Button>
