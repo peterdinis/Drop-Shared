@@ -133,7 +133,7 @@ const LoginForm: FC = () => {
                 y2="677.15616"
                 fill="none"
                 stroke="#000"
-                stroke-miterlimit="10"
+                strokeMiterlimit="10"
                 stroke-width="2"
                 opacity="0.1"
               />
@@ -144,7 +144,7 @@ const LoginForm: FC = () => {
                 y2="679.15616"
                 fill="none"
                 stroke="#000"
-                stroke-miterlimit="10"
+                strokeMiterlimit="10"
                 stroke-width="2"
                 opacity="0.1"
               />
@@ -155,7 +155,7 @@ const LoginForm: FC = () => {
                 y2="683"
                 fill="none"
                 stroke="#000"
-                stroke-miterlimit="10"
+                strokeMiterlimit="10"
                 stroke-width="2"
                 opacity="0.1"
               />
@@ -166,7 +166,7 @@ const LoginForm: FC = () => {
                 y2="687.15616"
                 fill="none"
                 stroke="#000"
-                stroke-miterlimit="10"
+                strokeMiterlimit="10"
                 stroke-width="2"
                 opacity="0.1"
               />
@@ -177,7 +177,7 @@ const LoginForm: FC = () => {
                 y2="688"
                 fill="none"
                 stroke="#000"
-                stroke-miterlimit="10"
+                strokeMiterlimit="10"
                 stroke-width="2"
                 opacity="0.1"
               />

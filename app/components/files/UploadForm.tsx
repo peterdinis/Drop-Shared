@@ -1,9 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { storage, db } from "@/app/lib/firebaseConfig";
+import { useRouter } from "next/navigation";
 import {
   ref,
   uploadBytesResumable,
@@ -22,6 +23,8 @@ const UploadForm: FC = () => {
   const [, setProgress] = useState(0);
   const {currentUser} = useAuth();
 
+  const router = useRouter();
+  const docId = serverTimestamp() as unknown as string;
   const compress = new Compress();
 
   const imageRef = ref(storage, `file-upload/${file?.name}`);
@@ -80,7 +83,6 @@ const UploadForm: FC = () => {
   );
 
   const saveFile = async (file: File, fileUrl: string) => {
-    const docId = serverTimestamp() as unknown as string;
 
     const fileDocRef = doc(db, 'uploadedFile', docId);
     
@@ -105,6 +107,12 @@ const UploadForm: FC = () => {
     setFile(e.target.files[0]!);
     toast.success("File was uploaded");
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      router.push("/file-preview" + docId)
+    }, 2000)  
+  }, []);
 
   return (
     <>
