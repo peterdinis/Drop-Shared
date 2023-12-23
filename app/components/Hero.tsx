@@ -1,19 +1,13 @@
 "use client";
 
 import { FC } from "react";
+import Link from "next/link";
 import mainImage from "../../public/img/main.jpg";
 import Image from "next/image";
 import Container from "./shared/Container";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 
 const Hero: FC = () => {
-  const router = useRouter();
-
-  const onGoToLogin = () => {
-    router.push("/login");
-  };
-
   return (
       <Container className="flex flex-wrap">
         <div className="flex items-center w-full lg:w-1/2">
@@ -29,7 +23,9 @@ const Hero: FC = () => {
               seamless communication and collaboration across all your devices.
             </p>
             <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
-              <Button size={"lg"} onClick={onGoToLogin}>Login and try</Button>
+              <Button size={"lg"}>
+                <Link href="/login">Login and try</Link>
+              </Button>
             </div>
           </div>
         </div>
