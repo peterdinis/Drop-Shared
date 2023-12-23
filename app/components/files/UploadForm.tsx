@@ -11,6 +11,7 @@ import {
 } from "firebase/storage";
 import Compress from "compress.js";
 import { Upload } from "lucide-react";
+import { serverTimestamp } from "firebase/firestore";
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -23,11 +24,11 @@ const UploadForm: FC = () => {
   async function resizeImageFn(file: File) {
 
     const resizedImage = await compress.compress([file], {
-      size: 2, // the max size in MB, defaults to 2MB
-      quality: 1, // the quality of the image, max is 1,
-      maxWidth: 300, // the max width of the output image, defaults to 1920px
-      maxHeight: 300, // the max height of the output image, defaults to 1920px
-      resize: true // defaults to true, set false if you do not want to resize the image width and height
+      size: 2, 
+      quality: 1, 
+      maxWidth: 300, 
+      maxHeight: 300, 
+      resize: true
     })
     const img = resizedImage[0];
     const base64str = img.data
@@ -73,6 +74,10 @@ const UploadForm: FC = () => {
       });
     }
   );
+
+  const saveFile = () => {
+    const docId = serverTimestamp();
+  }
 
   const handleUploadFile = (e: any) => {
     if (e.target.files[0]!?.size > 200000) {
