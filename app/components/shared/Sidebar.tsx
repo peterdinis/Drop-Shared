@@ -20,7 +20,7 @@ const Sidebar: FC = () => {
   const logoutUser = () => {
     logout();
     toast.success("Logout successfull");
-    Cookies.remove("userCredentials", {});
+    Cookies.remove("userCredentials");
     router.push("/login");
   };
 
