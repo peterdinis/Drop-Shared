@@ -9,7 +9,7 @@ const NavbarLinks: FC = () => {
 
   return (
     <>
-      {currentUser !== null ? (
+      {currentUser !== null  ? (
         <Link href="/dashboard">{currentUser?.email}</Link>
       ) : (
         <>

@@ -3,18 +3,24 @@
 import { Button } from "@/components/ui/button";
 import { FC, useState } from "react";
 import { toast } from "react-hot-toast";
-import { storage } from "@/app/lib/firebaseConfig";
+import { storage, db } from "@/app/lib/firebaseConfig";
 import {
   ref,
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import ProgressBar from "./ProgressBar";
 import Compress from "compress.js";
+import { Upload } from "lucide-react";
+import {  doc,serverTimestamp,setDoc } from "firebase/firestore";
+import { useAuth } from "@/app/hooks/useAuthContent";
+import { UploadedFile } from "@/app/types/fileTypes";
+import { generateRandomString } from "@/app/utils/randomString";
+
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [progress, setProgress] = useState(0);
+  const [, setProgress] = useState(0);
+  const {currentUser} = useAuth();
 
   const compress = new Compress();
 
@@ -23,11 +29,11 @@ const UploadForm: FC = () => {
   async function resizeImageFn(file: File) {
 
     const resizedImage = await compress.compress([file], {
-      size: 2, // the max size in MB, defaults to 2MB
-      quality: 1, // the quality of the image, max is 1,
-      maxWidth: 300, // the max width of the output image, defaults to 1920px
-      maxHeight: 300, // the max height of the output image, defaults to 1920px
-      resize: true // defaults to true, set false if you do not want to resize the image width and height
+      size: 2, 
+      quality: 1, 
+      maxWidth: 300, 
+      maxHeight: 300, 
+      resize: true
     })
     const img = resizedImage[0];
     const base64str = img.data
@@ -47,11 +53,9 @@ const UploadForm: FC = () => {
 
   resizeImageFn(uploadTask as unknown as File);
 
-  // Listen for state changes, errors, and completion of the upload.
   uploadTask.on(
     "state_changed",
     (snapshot) => {
-      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       console.log("Upload is " + progress + "% done");
       setProgress(progress);
@@ -70,9 +74,27 @@ const UploadForm: FC = () => {
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         console.log("File available at", downloadURL);
+        saveFile(file!, downloadURL);
       });
     }
   );
+
+  const saveFile = async (file: File, fileUrl: string) => {
+    const docId = serverTimestamp() as unknown as string;
+
+    const fileDocRef = doc(db, 'uploadedFile', docId);
+    
+    const fileData: UploadedFile = {
+        fileName: file.name,
+        fileSize: file.size,
+        fileType: file.type,
+        fileUrl,
+        userEmail: currentUser?.email!,
+        shortUrl: process.env.NEXT_PUBLIC_BASE_URL as unknown as string + generateRandomString(13)
+    };
+
+    await setDoc(fileDocRef, fileData);
+};
 
   const handleUploadFile = (e: any) => {
     if (e.target.files[0]!?.size > 200000) {
@@ -92,21 +114,9 @@ const UploadForm: FC = () => {
           className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
-            <svg
+            <Upload
               className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 16"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-              />
-            </svg>
+            />
             <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
               <span className="font-semibold">Click to upload</span> or drag and
               drop
@@ -126,10 +136,6 @@ const UploadForm: FC = () => {
       <Button disabled={!file} className="mt-5">
         Upload{" "}
       </Button>
-      <div className="mt-6">
-        <ProgressBar progress={progress} />
-      </div>
-
     </>
   );
 };
