@@ -33,7 +33,7 @@ const LoginForm: FC = () => {
 
   return (
     <>
-      <div className="lg:flex">
+      <div className="flex justify-center align-top">
         <div className="lg:w-1/2 xl:max-w-screen-sm">
           <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
             <h2
@@ -94,7 +94,7 @@ const LoginForm: FC = () => {
             </div>
           </div>
         </div>
-        <div className="hidden lg:flex items-center justify-center bg-indigo-100 flex-1 h-screen">
+       {/*  <div className="hidden lg:flex items-center justify-center bg-indigo-100 flex-1 h-screen">
           <div className="max-w-xs transform duration-200 hover:scale-110 cursor-pointer">
             <svg
               className="w-5/6 mx-auto"
@@ -251,7 +251,7 @@ const LoginForm: FC = () => {
               />
             </svg>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

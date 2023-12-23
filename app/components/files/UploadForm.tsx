@@ -16,6 +16,7 @@ import {  doc,serverTimestamp,setDoc } from "firebase/firestore";
 import { useAuth } from "@/app/hooks/useAuthContent";
 import { UploadedFile } from "@/app/types/fileTypes";
 import { generateRandomString } from "@/app/utils/randomString";
+import FileDisplayPreview from "./FIleDisplayPreview";
 
 
 const UploadForm: FC = () => {
@@ -108,11 +109,11 @@ const UploadForm: FC = () => {
     toast.success("File was uploaded");
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     setTimeout(() => {
       router.push("/file-preview" + docId)
     }, 2000)  
-  }, []);
+  }, []); */
 
   return (
     <>
@@ -141,6 +142,10 @@ const UploadForm: FC = () => {
           />
         </label>
       </div>
+      <div className="mt-5">
+        {file? <FileDisplayPreview file={file as unknown as File} /> : null}
+      </div>
+      <br />
       <Button disabled={!file} className="mt-5">
         Upload{" "}
       </Button>

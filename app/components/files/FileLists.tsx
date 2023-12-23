@@ -1,6 +1,9 @@
+"use client"
+
 import { FC } from "react";
 import Header from "../shared/Header";
 import Sidebar from "../shared/Sidebar";
+import ScrollToTop from "react-scroll-to-top";
 
 const FileLists: FC = () => {
   return (
@@ -8,6 +11,7 @@ const FileLists: FC = () => {
       <Sidebar />
       <div className="ml-5 py-4 px-8 flex-growtext-center flex-1">
         <Header text="All my files" />
+        <ScrollToTop />
       </div>
     </div>
   );
