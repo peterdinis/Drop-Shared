@@ -1,11 +1,9 @@
-"use client"
+"use client";
 
 import { FC, useState } from "react";
 import Link from "next/link";
-import { SvgIcon } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import NavbarLinks from "./NavbarLinks"
+import { Menu, X } from "lucide-react";
+import NavbarLinks from "./NavbarLinks";
 
 const Navbar: FC = () => {
   const [navbar, setNavbar] = useState(false);
@@ -24,9 +22,9 @@ const Navbar: FC = () => {
                 onClick={() => setNavbar(!navbar)}
               >
                 {navbar ? (
-                  <SvgIcon component={CloseIcon} sx={{ fontSize: 24 }} />
+                  <X className="text-xl" />
                 ) : (
-                  <SvgIcon component={MenuIcon} sx={{ fontSize: 24 }} />
+                  <Menu className="text-xl" />
                 )}
               </button>
             </div>
