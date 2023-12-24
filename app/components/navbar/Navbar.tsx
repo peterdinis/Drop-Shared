@@ -2,7 +2,6 @@
 
 import { FC, useState } from "react";
 import Link from "next/link";
-import { SvgIcon } from "@mui/material";
 import { Menu, X } from "lucide-react";
 import NavbarLinks from "./NavbarLinks";
 
@@ -23,9 +22,9 @@ const Navbar: FC = () => {
                 onClick={() => setNavbar(!navbar)}
               >
                 {navbar ? (
-                  <SvgIcon component={X} sx={{ fontSize: 24 }} />
+                  <X className="text-xl" />
                 ) : (
-                  <SvgIcon component={Menu} sx={{ fontSize: 24 }} />
+                  <Menu className="text-xl" />
                 )}
               </button>
             </div>
