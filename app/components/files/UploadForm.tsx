@@ -14,7 +14,10 @@ const UploadForm: FC = () => {
   const [, setImageUrls] = useState([]);
 
   const handleUploadFile = () => {
-    if (file == null) return;
+    if (file == null) {
+      toast.error("Uploaded file failed");
+      return;
+    }
     const imageRef = ref(storage, `uploaded-images/${file.name + v4()}`);
     uploadBytes(imageRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
