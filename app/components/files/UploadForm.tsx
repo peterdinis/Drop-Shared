@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { FC, useState } from "react";
+import { FC, useState, ChangeEvent } from "react";
 import { toast } from "react-hot-toast";
 import { storage } from "@/app/lib/firebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -11,20 +11,33 @@ import { v4 } from "uuid";
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [, setImageUrls] = useState([]);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   const handleUploadFile = () => {
-    if (file == null) {
+    if (file === null) {
       toast.error("Uploaded file failed");
       return;
     }
     const imageRef = ref(storage, `uploaded-images/${file.name + v4()}`);
-    uploadBytes(imageRef, file).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        setImageUrls((prev) => [...prev, url] as any);
+    uploadBytes(imageRef, file)
+      .then((snapshot: any) => {
+        return getDownloadURL(snapshot.ref);
+      })
+      .then((url: string) => {
+        setImageUrls((prev: string[]) => [...prev, url]);
+        toast.success("File was uploaded");
+      })
+      .catch((error) => {
+        console.error("Error uploading file: ", error);
+        toast.error("File upload failed");
       });
-      toast.success("File was uploaded");
-    });
+  };
+
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setFile(event.target.files[0]);
+    }
   };
 
   return (
@@ -45,9 +58,7 @@ const UploadForm: FC = () => {
             </p>
           </div>
           <input
-            onChange={(event) => {
-              setFile(event.target.files![0]);
-            }}
+            onChange={handleFileChange}
             id="dropzone-file"
             type="file"
             className="hidden"
@@ -55,7 +66,7 @@ const UploadForm: FC = () => {
         </label>
       </div>
       <div className="mt-5">
-        {file ? <FileDisplayPreview file={file as unknown as File} /> : null}
+        {file ? <FileDisplayPreview file={file} /> : null}
       </div>
       <br />
       <Button onClick={handleUploadFile} className="mt-5">
