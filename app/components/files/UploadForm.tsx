@@ -2,20 +2,26 @@
 
 import { Button } from "@/components/ui/button";
 import { FC, useState, ChangeEvent } from "react";
-import { toast } from "react-hot-toast";
 import { storage } from "@/app/lib/firebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { Upload } from "lucide-react";
 import FileDisplayPreview from "./FIleDisplayPreview";
 import { v4 } from "uuid";
+import { useToast } from "@/components/ui/use-toast"
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
 
+  const {toast} = useToast();
+
   const handleUploadFile = () => {
     if (file === null) {
-      toast.error("Uploaded file failed");
+      toast({
+        title: "No file found",
+        color: "red",
+        description: "First you must select file to upload"
+      })
       return;
     }
     const imageRef = ref(storage, `uploaded-images/${file.name + v4()}`);
@@ -25,11 +31,17 @@ const UploadForm: FC = () => {
       })
       .then((url: string) => {
         setImageUrls((prev: string[]) => [...prev, url]);
-        toast.success("File was uploaded");
+        toast({
+          title: "File was successfully uploaded",
+          color: "green"
+        })
       })
       .catch((error) => {
         console.error("Error uploading file: ", error);
-        toast.error("File upload failed");
+        toast({
+          title: "File uploading failed",
+          color: "red"
+        })
       });
   };
 

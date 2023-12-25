@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, ChangeEvent, FC } from "react";
 import { useAuth } from "../../hooks/useAuthContent";
-import { toast } from "react-hot-toast";
+import { useToast } from "@/components/ui/use-toast"
 import Link from "next/link";
 import Cookies from "js-cookie";
 import Input from "../shared/Input";
@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 
 const LoginForm: FC = () => {
   const router = useRouter();
-
+  const { toast } = useToast();
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -23,10 +23,16 @@ const LoginForm: FC = () => {
     try {
       await login(credentials);
       Cookies.set("userCredentials", JSON.stringify(credentials));
-      toast.success("Login was successful");
+      toast({
+        title: "Login was succesfull",
+        color: "green",
+      })
       router.push("/dashboard");
     } catch (error) {
-      toast.error("Login failed. Please check your credentials.");
+      toast({
+        title: "Login failed",
+        color: "red"
+      })
       router.push("/login");
     }
   };

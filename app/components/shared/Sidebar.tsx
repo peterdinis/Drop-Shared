@@ -4,7 +4,7 @@ import { FC, useState } from "react";
 import classNames from "classnames";
 import { XCircle, Menu, LogOut, Upload, Files } from "lucide-react";
 import { useAuth } from "../../hooks/useAuthContent";
-import toast from "react-hot-toast";
+import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Tooltip } from "@mui/material";
@@ -13,13 +13,16 @@ import Cookies from "js-cookie";
 
 const Sidebar: FC = () => {
   const [collapsed, setSidebarCollapsed] = useState(false);
-
+  const { toast } = useToast();
   const { logout } = useAuth();
   const router = useRouter();
 
   const logoutUser = () => {
     logout();
-    toast.success("Logout successfull");
+    toast({
+      title: "Logout was successfull",
+      color: "green"
+    })
     Cookies.remove("userCredentials");
     router.push("/login");
   };
