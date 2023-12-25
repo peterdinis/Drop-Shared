@@ -11,7 +11,7 @@ import { v4 } from "uuid";
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [, setImageUrls] = useState<string[]>([]);
 
   const handleUploadFile = () => {
     if (file === null) {
