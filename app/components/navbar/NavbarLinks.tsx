@@ -7,11 +7,11 @@ import { useAuth } from "@/app/hooks/useAuthContent";
 const NavbarLinks: FC = () => {
   const { currentUser } = useAuth();
 
+  console.log(currentUser);
+
   return (
     <>
-      {currentUser !== null  ? (
-        <Link href="/dashboard">{currentUser?.email}</Link>
-      ) : (
+      {currentUser === null ? (
         <>
           <li className="text-black text-xl">
             <Link href="/login">Login</Link>
@@ -20,6 +20,8 @@ const NavbarLinks: FC = () => {
             <Link href="/register">Register</Link>
           </li>
         </>
+      ) : (
+        <Link href="/dashboard">{currentUser?.email}</Link>
       )}
     </>
   );
