@@ -4,12 +4,16 @@ import { FC, useState } from "react";
 import classNames from "classnames";
 import { XCircle, Menu, LogOut, Upload, Files } from "lucide-react";
 import { useAuth } from "../../hooks/useAuthContent";
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Tooltip } from "@mui/material";
 import Link from "next/link";
 import Cookies from "js-cookie";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+} from "@/components/ui/tooltip";
 
 const Sidebar: FC = () => {
   const [collapsed, setSidebarCollapsed] = useState(false);
@@ -21,8 +25,8 @@ const Sidebar: FC = () => {
     logout();
     toast({
       title: "Logout was successfull",
-      color: "green"
-    })
+      color: "green",
+    });
     Cookies.remove("userCredentials");
     router.push("/login");
   };
@@ -75,29 +79,38 @@ const Sidebar: FC = () => {
           <div>
             <div className="mt-8">
               <div className="mt-8">
-                <Tooltip title="Logout">
-                  <Button onClick={logoutUser} variant={"ghost"} size={"sm"}>
-                    <LogOut />
-                  </Button>
-                </Tooltip>
+                <TooltipProvider>
+                  <Tooltip>
+                    <Button onClick={logoutUser} variant={"ghost"} size={"sm"}>
+                      <LogOut />
+                    </Button>
+                    <TooltipContent>Logout</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
               <div className="mt-8">
-                <Tooltip title="Upload file">
-                  <Button variant={"ghost"} size={"sm"}>
-                    <Link href="/upload">
-                      <Upload />
-                    </Link>
-                  </Button>
-                </Tooltip>
+                <TooltipProvider>
+                  <Tooltip>
+                    <Button variant={"ghost"} size={"sm"}>
+                      <Link href="/files">
+                        <Files />
+                      </Link>
+                      <TooltipContent>Upload file</TooltipContent>
+                    </Button>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
               <div className="mt-8">
-                <Tooltip title="My files">
-                  <Button variant={"ghost"} size={"sm"}>
-                    <Link href="/files">
-                      <Files />
-                    </Link>
-                  </Button>
-                </Tooltip>
+                <TooltipProvider>
+                  <Tooltip>
+                    <Button variant={"ghost"} size={"sm"}>
+                      <Link href="/files">
+                        <Files />
+                      </Link>
+                      <TooltipContent>My files</TooltipContent>
+                    </Button>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
             </div>
           </div>
