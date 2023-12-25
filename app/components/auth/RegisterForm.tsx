@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, ChangeEvent, FC } from "react";
 import { useAuth } from "../../hooks/useAuthContent"
-import { toast } from "react-hot-toast";
+import { useToast } from "@/components/ui/use-toast"
 import Link from "next/link";
 import Input from "../shared/Input";
 import { Button } from "@/components/ui/button";
@@ -15,16 +15,23 @@ const RegisterForm: FC = () => {
     email: "",
     password: "",
   });
-
+  const { toast } = useToast()
   const { register } = useAuth();
 
   const registerUser = async () => {
     try {
       await register(credentials);
-      toast.success("Registration was successful");
+      toast({
+        title: "Registeration was successull",
+        color: "green"
+      })
       router.push("/login");
     } catch (error) {
-      toast.error("Register failed");
+      toast({
+        title: "Register failed",
+        color: "red",
+        variant: "destructive"
+      })
       router.push("/register");
     }
   };

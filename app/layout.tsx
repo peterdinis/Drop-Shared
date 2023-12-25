@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import Navbar from "./components/navbar/Navbar";
 import AuthContextProvider from "./providers/UserProvider";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: 'Drop-Shared',
