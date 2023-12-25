@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { toast } from "react-hot-toast";
 import { storage, db } from "@/app/lib/firebaseConfig";
 import { useRouter } from "next/navigation";
@@ -109,11 +109,6 @@ const UploadForm: FC = () => {
     toast.success("File was uploaded");
   };
 
-  /* useEffect(() => {
-    setTimeout(() => {
-      router.push("/file-preview" + docId)
-    }, 2000)  
-  }, []); */
 
   return (
     <>
