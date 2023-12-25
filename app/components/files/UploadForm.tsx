@@ -20,7 +20,8 @@ const UploadForm: FC = () => {
       toast({
         title: "No file found",
         color: "red",
-        description: "First you must select file to upload"
+        description: "First you must select file to upload",
+        variant: "destructive"
       })
       return;
     }
@@ -40,7 +41,8 @@ const UploadForm: FC = () => {
         console.error("Error uploading file: ", error);
         toast({
           title: "File uploading failed",
-          color: "red"
+          color: "red",
+          variant: "destructive"
         })
       });
   };

@@ -31,7 +31,8 @@ const LoginForm: FC = () => {
     } catch (error) {
       toast({
         title: "Login failed",
-        color: "red"
+        color: "red",
+        variant: "destructive"
       })
       router.push("/login");
     }
