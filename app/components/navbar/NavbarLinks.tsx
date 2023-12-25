@@ -9,9 +9,7 @@ const NavbarLinks: FC = () => {
 
   return (
     <>
-      {currentUser !== null  ? (
-        <Link href="/dashboard">{currentUser?.email}</Link>
-      ) : (
+      {currentUser === null ? (
         <>
           <li className="text-black text-xl">
             <Link href="/login">Login</Link>
@@ -20,6 +18,8 @@ const NavbarLinks: FC = () => {
             <Link href="/register">Register</Link>
           </li>
         </>
+      ) : (
+        <Link href="/dashboard">{currentUser?.email}</Link>
       )}
     </>
   );

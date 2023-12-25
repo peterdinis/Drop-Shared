@@ -1,7 +1,6 @@
 import { FC } from "react";
 import Header from "../shared/Header";
 import { useAuth } from "@/app/hooks/useAuthContent";
-import DashboardHelpers from "./DashboardHelpers";
 
 const DashboardContent: FC = () => {
   const { currentUser } = useAuth();
@@ -11,8 +10,7 @@ const DashboardContent: FC = () => {
       <Header text="My Dashboard" />
       <br />
       <div className="mt-5">
-        <h1 className="shadow-sm font-bold">Hello: {currentUser?.email}</h1>
-        <DashboardHelpers />
+        <h1 className="font-bold">Hello: {currentUser?.email}</h1>
       </div>
     </div>
   );
