@@ -7,11 +7,13 @@ import { storage } from "@/app/lib/firebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { Upload } from "lucide-react";
 import FileDisplayPreview from "./FIleDisplayPreview";
+import { useRouter } from "next/navigation";
 import { v4 } from "uuid";
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [, setImageUrls] = useState<string[]>([]);
+  const router = useRouter();
 
   const handleUploadFile = () => {
     if (file === null) {
@@ -26,6 +28,11 @@ const UploadForm: FC = () => {
       .then((url: string) => {
         setImageUrls((prev: string[]) => [...prev, url]);
         toast.success("File was uploaded");
+      })
+      .then(() => {
+        setTimeout(() =>{
+          router.prefetch("/upload");
+        }, 1000);
       })
       .catch((error) => {
         console.error("Error uploading file: ", error);
