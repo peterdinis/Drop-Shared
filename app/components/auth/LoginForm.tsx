@@ -32,7 +32,7 @@ const LoginForm: FC = () => {
       toast({
         title: "Login failed",
         color: "red",
-        variant: "destructive"
+        variant: "destructive",
       })
       router.push("/login");
     }

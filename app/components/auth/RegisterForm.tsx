@@ -29,7 +29,8 @@ const RegisterForm: FC = () => {
     } catch (error) {
       toast({
         title: "Register failed",
-        color: "red"
+        color: "red",
+        variant: "destructive"
       })
       router.push("/register");
     }
