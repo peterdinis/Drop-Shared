@@ -13,6 +13,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
+  TooltipTrigger,
 } from "@/components/ui/tooltip";
 
 const Sidebar: FC = () => {
@@ -81,9 +82,15 @@ const Sidebar: FC = () => {
               <div className="mt-8">
                 <TooltipProvider>
                   <Tooltip>
-                    <Button onClick={logoutUser} variant={"ghost"} size={"sm"}>
-                      <LogOut />
-                    </Button>
+                    <TooltipTrigger>
+                      <Button
+                        onClick={logoutUser}
+                        variant={"ghost"}
+                        size={"sm"}
+                      >
+                        <LogOut />
+                      </Button>
+                    </TooltipTrigger>
                     <TooltipContent>Logout</TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -91,24 +98,28 @@ const Sidebar: FC = () => {
               <div className="mt-8">
                 <TooltipProvider>
                   <Tooltip>
-                    <Button variant={"ghost"} size={"sm"}>
-                      <Link href="/files">
-                        <Files />
-                      </Link>
-                      <TooltipContent>Upload file</TooltipContent>
-                    </Button>
+                    <TooltipTrigger>
+                      <Button variant={"ghost"} size={"sm"}>
+                        <Link href="/files">
+                          <Files />
+                        </Link>
+                        <TooltipContent>Upload file</TooltipContent>
+                      </Button>
+                    </TooltipTrigger>
                   </Tooltip>
                 </TooltipProvider>
               </div>
               <div className="mt-8">
                 <TooltipProvider>
                   <Tooltip>
-                    <Button variant={"ghost"} size={"sm"}>
-                      <Link href="/files">
-                        <Files />
-                      </Link>
-                      <TooltipContent>My files</TooltipContent>
-                    </Button>
+                    <TooltipTrigger>
+                      <Button variant={"ghost"} size={"sm"}>
+                        <Link href="/files">
+                          <Files />
+                        </Link>
+                        <TooltipContent>My files</TooltipContent>
+                      </Button>
+                    </TooltipTrigger>
                   </Tooltip>
                 </TooltipProvider>
               </div>
