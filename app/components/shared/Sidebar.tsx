@@ -26,7 +26,7 @@ const Sidebar: FC = () => {
     logout();
     toast({
       title: 'Logout was successfull',
-      color: 'green',
+      className: "bg-green-400",
       duration: 2000,
     });
     Cookies.remove('userCredentials');

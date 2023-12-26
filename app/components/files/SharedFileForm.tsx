@@ -43,6 +43,7 @@ const SharedFileForm: FC = () =>{
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
+      duration: 2000,
     })
   }
  

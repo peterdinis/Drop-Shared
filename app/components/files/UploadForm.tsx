@@ -20,7 +20,6 @@ const UploadForm: FC = () => {
     if (file === null) {
       toast({
         title: 'No file found',
-        color: 'red',
         description: 'First you must select file to upload',
         variant: 'destructive',
         duration: 2000,
@@ -36,7 +35,7 @@ const UploadForm: FC = () => {
         setImageUrls((prev: string[]) => [...prev, url]);
         toast({
           title: 'File was successfully uploaded',
-          color: 'green',
+          className: "bg-green-400",
           duration: 2000,
         });
       })
@@ -49,7 +48,6 @@ const UploadForm: FC = () => {
         console.error('Error uploading file: ', error);
         toast({
           title: 'File uploading failed',
-          color: 'red',
           variant: 'destructive',
           duration: 2000,
         });

@@ -27,9 +27,9 @@ const FileCard: FC<ICardProps> = ({ item }: ICardProps) => {
     try {
       const fileRef = ref(storage, item);
       toast({
-        color: 'red',
         title: 'Delete file',
         duration: 2000,
+        variant: "destructive"
       });
       await deleteObject(fileRef);
     } catch (error) {

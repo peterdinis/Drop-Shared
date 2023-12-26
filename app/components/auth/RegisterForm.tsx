@@ -23,14 +23,13 @@ const RegisterForm: FC = () => {
       await register(credentials);
       toast({
         title: 'Registeration was successull',
-        color: 'green',
+        className: "bg-green-400",
         duration: 2000,
       });
       router.push('/login');
     } catch (error) {
       toast({
         title: 'Register failed',
-        color: 'red',
         variant: 'destructive',
         duration: 2000,
       });
