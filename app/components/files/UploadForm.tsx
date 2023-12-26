@@ -62,6 +62,15 @@ const UploadForm: FC = () => {
     }
   };
 
+  const handleCancelUpload = () => {
+    setFile(null);
+    toast({
+      title: 'Upload cancelled',
+      color: 'orange',
+      duration: 2000,
+    });
+  };
+
   return (
     <>
       <div className='flex items-center justify-center w-full'>
@@ -86,6 +95,15 @@ const UploadForm: FC = () => {
       </div>
       <div className='mt-5'>
         {file ? <FileDisplayPreview file={file} /> : null}
+        {file && (
+          <Button
+            onClick={handleCancelUpload}
+            className='mt-3'
+            variant={'default'}
+          >
+            Cancel Upload
+          </Button>
+        )}
       </div>
       <br />
       <Button onClick={handleUploadFile} className='mt-5'>
