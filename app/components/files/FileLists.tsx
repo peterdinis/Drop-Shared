@@ -6,31 +6,21 @@ import Sidebar from '../shared/Sidebar';
 import ScrollToTop from 'react-scroll-to-top';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { storage } from '@/app/lib/firebaseConfig';
-import { useAuth } from '@/app/hooks/useAuthContent';
 import FileCard from './FileCard';
 
 const FileLists: FC = () => {
   const uploadedFilesRef = ref(storage, `uploaded-images/`);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
-  const { currentUser } = useAuth();
 
   useEffect(() => {
     listAll(uploadedFilesRef).then((response) => {
-      response.items.forEach((item: any) => {
-        item.getMetadata().then((metadata: any) => {
-          if (
-            currentUser &&
-            metadata &&
-            metadata.customMetadata?.uploader === currentUser.email
-          ) {
-            getDownloadURL(item).then((url) => {
-              setImageUrls((prev) => [...prev, url]);
-            });
-          }
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageUrls((prev) => [...prev, url]);
         });
       });
     });
-  }, [currentUser]);
+  }, []);
 
   return (
     <div className='flex text-gray-900 bg-gray-100 dark:bg-dark dark:text-light'>
