@@ -27,6 +27,7 @@ const Sidebar: FC = () => {
     toast({
       title: "Logout was successfull",
       color: "green",
+      duration: 2000
     });
     Cookies.remove("userCredentials");
     router.push("/login");

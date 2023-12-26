@@ -22,7 +22,8 @@ const UploadForm: FC = () => {
         title: "No file found",
         color: "red",
         description: "First you must select file to upload",
-        variant: "destructive"
+        variant: "destructive",
+        duration: 2000
       })
       return;
     }
@@ -35,7 +36,8 @@ const UploadForm: FC = () => {
         setImageUrls((prev: string[]) => [...prev, url]);
         toast({
           title: "File was successfully uploaded",
-          color: "green"
+          color: "green",
+          duration: 2000
         })
       })
       .then(() => {
@@ -48,7 +50,8 @@ const UploadForm: FC = () => {
         toast({
           title: "File uploading failed",
           color: "red",
-          variant: "destructive"
+          variant: "destructive",
+          duration: 2000
         })
       });
   };

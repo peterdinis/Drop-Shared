@@ -26,6 +26,7 @@ const LoginForm: FC = () => {
       toast({
         title: "Login was succesfull",
         color: "green",
+        duration: 2000
       })
       router.push("/dashboard");
     } catch (error) {
@@ -33,6 +34,7 @@ const LoginForm: FC = () => {
         title: "Login failed",
         color: "red",
         variant: "destructive",
+        duration: 2000
       })
       router.push("/login");
     }
