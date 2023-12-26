@@ -8,11 +8,12 @@ import { Upload } from "lucide-react";
 import FileDisplayPreview from "./FIleDisplayPreview";
 import { v4 } from "uuid";
 import { useToast } from "@/components/ui/use-toast"
+import { useRouter } from "next/navigation";
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
-
+  const router = useRouter();
   const {toast} = useToast();
 
   const handleUploadFile = () => {
@@ -36,6 +37,11 @@ const UploadForm: FC = () => {
           title: "File was successfully uploaded",
           color: "green"
         })
+      })
+      .then(() => {
+        setTimeout(() =>{
+          router.prefetch("/upload");
+        }, 1000);
       })
       .catch((error) => {
         console.error("Error uploading file: ", error);
