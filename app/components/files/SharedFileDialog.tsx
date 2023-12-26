@@ -31,9 +31,7 @@ const SharedFileDialog: FC = () => {
 
       <DialogContent>
         <SmallHeader text='Share this file with your friend' />
-        <div className='mt-4'>
-            <SharedFileForm />
-        </div>
+        <SharedFileForm />
       </DialogContent>
     </Dialog>
   );
