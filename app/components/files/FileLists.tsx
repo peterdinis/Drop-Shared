@@ -8,10 +8,12 @@ import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { storage } from '@/app/lib/firebaseConfig';
 import FileCard from './FileCard';
 import { useAuth } from '@/app/hooks/useAuthContent';
+import { useToast } from '@/components/ui/use-toast';
 
 const FileLists: FC = () => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const {currentUser} = useAuth();
+  const {toast} = useToast();
 
   useEffect(() => {
     if (currentUser) {
@@ -27,7 +29,11 @@ const FileLists: FC = () => {
           setImageUrls(urls);
         })
         .catch((error) => {
-          console.error('Error fetching user files: ', error);
+          toast({
+            variant: "destructive",
+            description: error,
+            duration: 8000
+          })
         });
     }
   }, [currentUser]);
