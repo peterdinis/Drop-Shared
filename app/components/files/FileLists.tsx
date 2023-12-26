@@ -7,21 +7,30 @@ import ScrollToTop from 'react-scroll-to-top';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { storage } from '@/app/lib/firebaseConfig';
 import FileCard from './FileCard';
+import { useAuth } from '@/app/hooks/useAuthContent';
 
 const FileLists: FC = () => {
-  const uploadedFilesRef = ref(storage, `uploaded-images/`);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const {currentUser} = useAuth();
 
   useEffect(() => {
-    listAll(uploadedFilesRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageUrls((prev) => [...prev, url]);
-        });
-      });
-    });
-  }, []);
+    if (currentUser) {
+      const userUploadedFilesRef = ref(storage, `uploaded-images/${currentUser?.email}/`);
 
+      listAll(userUploadedFilesRef)
+        .then((response) => {
+          return Promise.all(
+            response.items.map((item) => getDownloadURL(item))
+          );
+        })
+        .then((urls) => {
+          setImageUrls(urls);
+        })
+        .catch((error) => {
+          console.error('Error fetching user files: ', error);
+        });
+    }
+  }, [currentUser]);
   return (
     <div className='overflow-x-hidden flex text-gray-900 bg-gray-100 dark:bg-dark dark:text-light'>
       <Sidebar />

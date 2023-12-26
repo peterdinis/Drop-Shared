@@ -9,12 +9,14 @@ import FileDisplayPreview from './FIleDisplayPreview';
 import { v4 } from 'uuid';
 import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/app/hooks/useAuthContent';
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [, setImageUrls] = useState<string[]>([]);
   const router = useRouter();
   const { toast } = useToast();
+  const {currentUser} = useAuth();
 
   const handleUploadFile = () => {
     if (file === null) {
@@ -26,7 +28,7 @@ const UploadForm: FC = () => {
       });
       return;
     }
-    const imageRef = ref(storage, `uploaded-images/${file.name + v4()}`);
+    const imageRef = ref(storage, `my-images/${currentUser?.email}/${file.name + v4()}`);
     uploadBytes(imageRef, file)
       .then((snapshot: any) => {
         return getDownloadURL(snapshot.ref);

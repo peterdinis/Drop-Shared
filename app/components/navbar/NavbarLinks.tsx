@@ -11,7 +11,8 @@ const NavbarLinks: FC = () => {
 
   return (
     <>
-      {currentUser === null && actualPath === "/login" ? (
+    {/* TODO: Na logine nechceme vidieť curretUser */}
+      {currentUser === null || actualPath === "/login" ? (
         <>
           <li className='text-black text-xl'>
             <Link href='/login'>Login</Link>
