@@ -12,12 +12,9 @@ import { deleteObject, ref } from 'firebase/storage';
 import { storage } from '@/app/lib/firebaseConfig';
 import { useToast } from '@/components/ui/use-toast';
 import SharedFileDialog from './SharedFileDialog';
+import { CardFileType } from '@/app/types/fileTypes';
 
-interface ICardProps {
-  item: string;
-}
-
-const FileCard: FC<ICardProps> = ({ item }: ICardProps) => {
+const FileCard: FC<CardFileType> = ({ item }: CardFileType) => {
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const { toast } = useToast();
 
@@ -27,9 +24,9 @@ const FileCard: FC<ICardProps> = ({ item }: ICardProps) => {
     try {
       const fileRef = ref(storage, item);
       toast({
-        color: 'red',
         title: 'Delete file',
         duration: 2000,
+        variant: "destructive"
       });
       await deleteObject(fileRef);
     } catch (error) {

@@ -1,7 +1,7 @@
 import { UserCredential, User } from 'firebase/auth';
 import { ReactNode } from 'react';
 
-export interface AuthContextType {
+export type AuthContextType = {
   currentUser: User | null;
   login: (credentials: EmailAndPasswordCredentials) => Promise<UserCredential>;
   register: (
@@ -10,15 +10,15 @@ export interface AuthContextType {
   logout: () => Promise<void>;
 }
 
-export interface AuthProviderProps {
+export type AuthProviderProps =  {
   children: ReactNode;
 }
 
-export interface Unsubscribe {
+export type Unsubscribe = {
   (): void;
 }
 
-export interface EmailAndPasswordCredentials {
+export type EmailAndPasswordCredentials = {
   email: string;
   password: string;
 }

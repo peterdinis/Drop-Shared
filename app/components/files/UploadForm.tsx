@@ -9,25 +9,26 @@ import FileDisplayPreview from './FIleDisplayPreview';
 import { v4 } from 'uuid';
 import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/app/hooks/useAuthContent';
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [, setImageUrls] = useState<string[]>([]);
   const router = useRouter();
   const { toast } = useToast();
+  const {currentUser} = useAuth();
 
   const handleUploadFile = () => {
     if (file === null) {
       toast({
         title: 'No file found',
-        color: 'red',
         description: 'First you must select file to upload',
         variant: 'destructive',
         duration: 2000,
       });
       return;
     }
-    const imageRef = ref(storage, `uploaded-images/${file.name + v4()}`);
+    const imageRef = ref(storage, `my-images/${currentUser?.email}/${file.name + v4()}`);
     uploadBytes(imageRef, file)
       .then((snapshot: any) => {
         return getDownloadURL(snapshot.ref);
@@ -36,7 +37,7 @@ const UploadForm: FC = () => {
         setImageUrls((prev: string[]) => [...prev, url]);
         toast({
           title: 'File was successfully uploaded',
-          color: 'green',
+          className: "bg-green-400",
           duration: 2000,
         });
       })
@@ -49,7 +50,6 @@ const UploadForm: FC = () => {
         console.error('Error uploading file: ', error);
         toast({
           title: 'File uploading failed',
-          color: 'red',
           variant: 'destructive',
           duration: 2000,
         });

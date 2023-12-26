@@ -2,14 +2,11 @@ import Image from 'next/image';
 import { FC } from 'react';
 import ExapleFile from '../../../public/img/exampleFile.png';
 import prettyBytes from 'pretty-bytes';
+import { FileTypeDisplayPreview } from '@/app/types/fileTypes';
 
-interface IFileDisplayPreview {
-  file?: File;
-}
-
-const FileDisplayPreview: FC<IFileDisplayPreview> = ({
+const FileDisplayPreview: FC<FileTypeDisplayPreview> = ({
   file,
-}: IFileDisplayPreview) => {
+}: FileTypeDisplayPreview) => {
   const fileSize = prettyBytes(file?.size as unknown as number);
 
   return (

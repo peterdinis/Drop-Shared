@@ -7,20 +7,38 @@ import ScrollToTop from 'react-scroll-to-top';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { storage } from '@/app/lib/firebaseConfig';
 import FileCard from './FileCard';
+import { useAuth } from '@/app/hooks/useAuthContent';
+import { useToast } from '@/components/ui/use-toast';
 
 const FileLists: FC = () => {
-  const uploadedFilesRef = ref(storage, `uploaded-images/`);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const {currentUser} = useAuth();
+  const {toast} = useToast();
 
   useEffect(() => {
-    listAll(uploadedFilesRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageUrls((prev) => [...prev, url]);
+    if (currentUser) {
+      const userUploadedFilesRef = ref(storage, `my-images/${currentUser?.email}/`);
+
+      listAll(userUploadedFilesRef)
+        .then((response) => {
+          return Promise.all(
+            response.items.map((item) => getDownloadURL(item))
+          );
+        })
+        .then((urls) => {
+          setImageUrls(urls);
+        })
+        .catch((error) => {
+          toast({
+            variant: "destructive",
+            description: error,
+            duration: 8000
+          })
         });
-      });
-    });
-  }, []);
+    }
+  }, [currentUser]);
+
+  console.log(imageUrls);
 
   return (
     <div className='overflow-x-hidden flex text-gray-900 bg-gray-100 dark:bg-dark dark:text-light'>
