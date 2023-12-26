@@ -3,7 +3,8 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { FC, useState } from 'react';
-import Header from '../shared/Header';
+import SmallHeader from '../shared/SmallHeader';
+import SharedFileForm from './SharedFileForm';
 
 const SharedFileDialog: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,10 @@ const SharedFileDialog: FC = () => {
       </DialogTrigger>
 
       <DialogContent>
-        <Header text='Share this file with your friend' />
+        <SmallHeader text='Share this file with your friend' />
+        <div className='mt-4'>
+            <SharedFileForm />
+        </div>
       </DialogContent>
     </Dialog>
   );
