@@ -7,15 +7,20 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { v4 } from 'uuid';
 
-const FileCard: FC = () => {
+interface ICardProps {
+  item: string;
+}
+
+const FileCard: FC<ICardProps> = ({ item }: ICardProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>File...</CardTitle>
+        <CardTitle>File - {v4()}</CardTitle>
       </CardHeader>
       <CardContent>
-        <img src='https://picsum.photos/200/300' />
+        <img src={item} />
         <CardFooter>
           <Button className='mt-4' variant={'default'} size={'lg'}>
             Share file with friends
