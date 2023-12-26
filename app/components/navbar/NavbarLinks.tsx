@@ -9,7 +9,6 @@ const NavbarLinks: FC = () => {
 
   return (
     <>
-    {/* TODO: Na logine nechceme vidieť curretUser */}
       {currentUser === null ? (
         <>
           <li className='text-black text-xl'>
