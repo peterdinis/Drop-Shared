@@ -23,7 +23,7 @@ const Hero: FC = () => {
             communication and collaboration across all your devices.
           </p>
           <div className='flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row'>
-            <Button size={'lg'}>
+            <Button variant={"default"} size={'lg'}>
               <Link href='/login'>Login and try</Link>
             </Button>
           </div>
