@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { FC } from "react";
-import Link from "next/link";
-import { useAuth } from "@/app/hooks/useAuthContent";
+import { FC } from 'react';
+import Link from 'next/link';
+import { useAuth } from '@/app/hooks/useAuthContent';
 
 const NavbarLinks: FC = () => {
   const { currentUser } = useAuth();
@@ -11,15 +11,15 @@ const NavbarLinks: FC = () => {
     <>
       {currentUser === null ? (
         <>
-          <li className="text-black text-xl">
-            <Link href="/login">Login</Link>
+          <li className='text-black text-xl'>
+            <Link href='/login'>Login</Link>
           </li>
-          <li className="text-black text-xl">
-            <Link href="/register">Register</Link>
+          <li className='text-black text-xl'>
+            <Link href='/register'>Register</Link>
           </li>
         </>
       ) : (
-        <Link href="/dashboard">{currentUser?.email}</Link>
+        <Link href='/dashboard'>{currentUser?.email}</Link>
       )}
     </>
   );

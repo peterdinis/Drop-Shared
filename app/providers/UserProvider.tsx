@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { auth } from "../lib/firebaseConfig";
-import { FC, createContext, useEffect, useState } from "react";
+import { auth } from '../lib/firebaseConfig';
+import { FC, createContext, useEffect, useState } from 'react';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
   User,
-} from "firebase/auth";
+} from 'firebase/auth';
 import {
   AuthContextType,
   AuthProviderProps,
   Unsubscribe,
   EmailAndPasswordCredentials,
-} from "../types/authTypes"
+} from '../types/authTypes';
 
 export const AuthContext = createContext<AuthContextType | undefined>(
-  undefined
+  undefined,
 );
 
 const AuthContextProvider: FC<AuthProviderProps> = ({ children }) => {
@@ -36,7 +36,7 @@ const AuthContextProvider: FC<AuthProviderProps> = ({ children }) => {
     return signInWithEmailAndPassword(
       auth,
       credentials.email,
-      credentials.password
+      credentials.password,
     );
   }
 
@@ -44,7 +44,7 @@ const AuthContextProvider: FC<AuthProviderProps> = ({ children }) => {
     return createUserWithEmailAndPassword(
       auth,
       credentials.email,
-      credentials.password
+      credentials.password,
     );
   }
 

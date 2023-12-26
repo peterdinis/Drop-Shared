@@ -1,8 +1,8 @@
-import { NextPage } from "next";
-import UploadFileWrapper from "../components/files/UploadFileWrapper";
+import { NextPage } from 'next';
+import UploadFileWrapper from '../components/files/UploadFileWrapper';
 
 const UploadPage: NextPage = () => {
-    return <UploadFileWrapper />
-}
+  return <UploadFileWrapper />;
+};
 
 export default UploadPage;
