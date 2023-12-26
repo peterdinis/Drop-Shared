@@ -17,7 +17,7 @@ const FileLists: FC = () => {
 
   useEffect(() => {
     if (currentUser) {
-      const userUploadedFilesRef = ref(storage, `uploaded-images/${currentUser?.email}/`);
+      const userUploadedFilesRef = ref(storage, `my-images/${currentUser?.email}/`);
 
       listAll(userUploadedFilesRef)
         .then((response) => {
@@ -37,6 +37,9 @@ const FileLists: FC = () => {
         });
     }
   }, [currentUser]);
+
+  console.log(imageUrls);
+
   return (
     <div className='overflow-x-hidden flex text-gray-900 bg-gray-100 dark:bg-dark dark:text-light'>
       <Sidebar />

@@ -7,12 +7,10 @@ import { useAuth } from '@/app/hooks/useAuthContent';
 const NavbarLinks: FC = () => {
   const { currentUser } = useAuth();
 
-  const actualPath = window.location.pathname;
-
   return (
     <>
     {/* TODO: Na logine nechceme vidieť curretUser */}
-      {currentUser === null || actualPath === "/login" ? (
+      {currentUser === null ? (
         <>
           <li className='text-black text-xl'>
             <Link href='/login'>Login</Link>
