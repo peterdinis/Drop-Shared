@@ -25,7 +25,7 @@ const SharedFileDialog: FC = () => {
         asChild
       >
         <Button variant={'default'} size='lg'>
-          Shared with friend
+          Share with friend
         </Button>
       </DialogTrigger>
 
