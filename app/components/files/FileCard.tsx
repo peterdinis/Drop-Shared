@@ -11,6 +11,7 @@ import { v4 } from 'uuid';
 import { deleteObject, ref } from 'firebase/storage';
 import { storage } from '@/app/lib/firebaseConfig';
 import { useToast } from '@/components/ui/use-toast';
+import SharedFileDialog from './SharedFileDialog';
 
 interface ICardProps {
   item: string;
@@ -46,9 +47,7 @@ const FileCard: FC<ICardProps> = ({ item }: ICardProps) => {
       <CardContent>
         <img src={item} />
         <CardFooter>
-          <Button className='mt-4' variant={'default'} size={'lg'}>
-            Share file with friends
-          </Button>
+          <SharedFileDialog />
         </CardFooter>
         <div className='mt-4'>
           <Button
