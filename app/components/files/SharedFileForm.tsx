@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { FC } from "react"
+import { useAuth } from "@/app/hooks/useAuthContent"
  
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -25,6 +26,8 @@ const FormSchema = z.object({
 })
  
 const SharedFileForm: FC = () =>{
+  const {currentUser} = useAuth();
+  
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
