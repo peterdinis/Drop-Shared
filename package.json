@@ -52,6 +52,7 @@
     "@types/react-file-icon": "^1.0.4",
     "@types/uuid": "^9.0.7",
     "autoprefixer": "^10.0.1",
+    "babel-eslint": "^10.1.0",
     "eslint": "^8",
     "eslint-config-next": "14.0.2",
     "postcss": "^8",
