@@ -40,10 +40,8 @@ const UploadForm: FC = () => {
           className: "bg-green-400",
           duration: 2000,
         });
-      })
-      .then(() => {
         setTimeout(() => {
-          router.prefetch('/upload');
+          router.push("/files");
         }, 1000);
       })
       .catch((error) => {
@@ -66,7 +64,8 @@ const UploadForm: FC = () => {
     setFile(null);
     toast({
       title: 'Upload cancelled',
-      color: 'orange',
+      className: "bg-red-400",
+      variant: "destructive",
       duration: 2000,
     });
   };

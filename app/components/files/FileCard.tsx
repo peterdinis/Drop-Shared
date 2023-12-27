@@ -29,11 +29,10 @@ const FileCard: FC<CardFileType> = ({ item }: CardFileType) => {
         variant: "destructive"
       });
       await deleteObject(fileRef);
+      setIsDeleting(false);
     } catch (error) {
       console.error('Error deleting file:', error);
-    } finally {
-      setIsDeleting(false);
-    }
+    } 
   };
 
   return (

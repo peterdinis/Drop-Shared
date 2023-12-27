@@ -37,9 +37,6 @@ const FileLists: FC = () => {
         });
     }
   }, [currentUser]);
-
-  console.log(imageUrls);
-
   return (
     <div className='overflow-x-hidden flex text-gray-900 bg-gray-100 dark:bg-dark dark:text-light'>
       <Sidebar />
