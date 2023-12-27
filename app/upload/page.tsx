@@ -1,3 +1,5 @@
+"use client"
+
 import { NextPage } from 'next';
 import UploadFileWrapper from '../components/files/UploadFileWrapper';
 import PrivateRoute from '../routes/PrivateRoute';
