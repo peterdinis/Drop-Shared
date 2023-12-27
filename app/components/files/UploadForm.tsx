@@ -10,6 +10,7 @@ import { v4 } from 'uuid';
 import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/app/hooks/useAuthContent';
+import Compress from 'compress.js';
 
 const UploadForm: FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -22,35 +23,57 @@ const UploadForm: FC = () => {
     if (file === null) {
       toast({
         title: 'No file found',
-        description: 'First you must select file to upload',
+        description: 'First you must select a file to upload',
         variant: 'destructive',
         duration: 2000,
       });
       return;
     }
-    const imageRef = ref(
-      storage,
-      `my-images/${currentUser?.email}/${file.name + v4()}`,
-    );
-    uploadBytes(imageRef, file)
-      .then((snapshot: any) => {
-        return getDownloadURL(snapshot.ref);
-      })
-      .then((url: string) => {
-        setImageUrls((prev: string[]) => [...prev, url]);
-        toast({
-          title: 'File was successfully uploaded',
-          className: 'bg-green-400',
-          duration: 2000,
-        });
-        setTimeout(() => {
-          router.push('/files');
-        }, 1000);
+    const compress = new Compress();
+    const compressOptions = {
+      maxWidth: 1920,
+      maxHeight: 1080,
+      quality: 0.8,
+    };
+    
+    compress
+      .compress([file], compressOptions)
+      .then((compressedFiles) => {
+        const compressedFile = compressedFiles[0] as any;
+        
+        const imageRef = ref(
+          storage,
+          `my-images/${currentUser?.email}/${compressedFile.name + v4()}`,
+        );
+
+        uploadBytes(imageRef, compressedFile.data)
+          .then((snapshot) => {
+            return getDownloadURL(snapshot.ref);
+          })
+          .then((url) => {
+            setImageUrls((prevUrls) => [...prevUrls, url]);
+            toast({
+              title: 'File was successfully uploaded',
+              className: 'bg-green-400',
+              duration: 2000,
+            });
+            setTimeout(() => {
+              router.push('/files');
+            }, 1000);
+          })
+          .catch((error) => {
+            console.error('Error uploading file: ', error);
+            toast({
+              title: 'File uploading failed',
+              variant: 'destructive',
+              duration: 2000,
+            });
+          });
       })
       .catch((error) => {
-        console.error('Error uploading file: ', error);
+        console.error('Error compressing file: ', error);
         toast({
-          title: 'File uploading failed',
+          title: 'File compression failed',
           variant: 'destructive',
           duration: 2000,
         });
