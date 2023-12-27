@@ -88,7 +88,7 @@ const LoginForm: FC = () => {
                 </Button>
               </div>
               <div className='mt-12 text-sm font-display font-semibold text-gray-700 text-center'>
-                Don't have an account ?{' '}
+                Don't have an account ? <br />
                 <Link
                   href='/register'
                   className='cursor-pointer text-orange-500'

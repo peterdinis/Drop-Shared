@@ -39,7 +39,7 @@ const FileLists: FC = () => {
           });
         });
     }
-  }, [currentUser]);
+  }, [currentUser, toast]);
   return (
     <div className='overflow-x-hidden flex text-gray-900 bg-gray-100 dark:bg-dark dark:text-light'>
       <Sidebar />
@@ -48,7 +48,7 @@ const FileLists: FC = () => {
         <section className='mt-4 grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
           {imageUrls &&
             imageUrls.map((item: string) => {
-              return <FileCard item={item} />;
+              return <FileCard key={item} item={item} />;
             })}
         </section>
         <ScrollToTop />
