@@ -101,8 +101,8 @@ const Sidebar: FC = () => {
                   <Tooltip>
                     <TooltipTrigger>
                       <Button variant={'ghost'} size={'sm'}>
-                        <Link href='/files'>
-                          <Files />
+                        <Link href='/upload'>
+                          <Upload />
                         </Link>
                         <TooltipContent>Upload file</TooltipContent>
                       </Button>
