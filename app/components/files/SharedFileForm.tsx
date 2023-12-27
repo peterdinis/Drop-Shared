@@ -1,10 +1,10 @@
-"use client"
- 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
- 
-import { Button } from "@/components/ui/button"
+'use client';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -13,51 +13,51 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { toast } from "@/components/ui/use-toast"
-import { FC } from "react"
-import { useAuth } from "@/app/hooks/useAuthContent"
- 
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { toast } from '@/components/ui/use-toast';
+import { FC } from 'react';
+import { useAuth } from '@/app/hooks/useAuthContent';
+
 const FormSchema = z.object({
   username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: 'Username must be at least 2 characters.',
   }),
-})
- 
-const SharedFileForm: FC = () =>{
-  const {currentUser} = useAuth();
-  
+});
+
+const SharedFileForm: FC = () => {
+  const { currentUser } = useAuth();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      username: "",
+      username: '',
     },
-  })
- 
+  });
+
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
-      title: "You submitted the following values:",
+      title: 'You submitted the following values:',
       description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
+          <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
       duration: 4000,
-    })
+    });
   }
- 
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className='w-2/3 space-y-6'>
         <FormField
           control={form.control}
-          name="username"
+          name='username'
           render={({ field }: any) => (
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder='shadcn' {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name.
@@ -66,10 +66,10 @@ const SharedFileForm: FC = () =>{
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type='submit'>Submit</Button>
       </form>
     </Form>
-  )
-}
+  );
+};
 
 export default SharedFileForm;

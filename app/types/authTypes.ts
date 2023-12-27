@@ -8,17 +8,17 @@ export type AuthContextType = {
     credentials: EmailAndPasswordCredentials,
   ) => Promise<UserCredential>;
   logout: () => Promise<void>;
-}
+};
 
-export type AuthProviderProps =  {
+export type AuthProviderProps = {
   children: ReactNode;
-}
+};
 
 export type Unsubscribe = {
   (): void;
-}
+};
 
 export type EmailAndPasswordCredentials = {
   email: string;
   password: string;
-}
+};

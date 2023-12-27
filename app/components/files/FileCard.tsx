@@ -26,13 +26,13 @@ const FileCard: FC<CardFileType> = ({ item }: CardFileType) => {
       toast({
         title: 'Delete file',
         duration: 2000,
-        variant: "destructive"
+        variant: 'destructive',
       });
       await deleteObject(fileRef);
       setIsDeleting(false);
     } catch (error) {
       console.error('Error deleting file:', error);
-    } 
+    }
   };
 
   return (

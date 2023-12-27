@@ -16,7 +16,7 @@ const UploadForm: FC = () => {
   const [, setImageUrls] = useState<string[]>([]);
   const router = useRouter();
   const { toast } = useToast();
-  const {currentUser} = useAuth();
+  const { currentUser } = useAuth();
 
   const handleUploadFile = () => {
     if (file === null) {
@@ -28,7 +28,10 @@ const UploadForm: FC = () => {
       });
       return;
     }
-    const imageRef = ref(storage, `my-images/${currentUser?.email}/${file.name + v4()}`);
+    const imageRef = ref(
+      storage,
+      `my-images/${currentUser?.email}/${file.name + v4()}`,
+    );
     uploadBytes(imageRef, file)
       .then((snapshot: any) => {
         return getDownloadURL(snapshot.ref);
@@ -37,11 +40,11 @@ const UploadForm: FC = () => {
         setImageUrls((prev: string[]) => [...prev, url]);
         toast({
           title: 'File was successfully uploaded',
-          className: "bg-green-400",
+          className: 'bg-green-400',
           duration: 2000,
         });
         setTimeout(() => {
-          router.push("/files");
+          router.push('/files');
         }, 1000);
       })
       .catch((error) => {
@@ -64,8 +67,8 @@ const UploadForm: FC = () => {
     setFile(null);
     toast({
       title: 'Upload cancelled',
-      className: "bg-red-400",
-      variant: "destructive",
+      className: 'bg-red-400',
+      variant: 'destructive',
       duration: 2000,
     });
   };

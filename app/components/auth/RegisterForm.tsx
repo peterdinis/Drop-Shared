@@ -23,7 +23,7 @@ const RegisterForm: FC = () => {
       await register(credentials);
       toast({
         title: 'Registeration was successull',
-        className: "bg-green-400",
+        className: 'bg-green-400',
         duration: 2000,
       });
       router.push('/login');

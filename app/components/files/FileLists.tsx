@@ -12,17 +12,20 @@ import { useToast } from '@/components/ui/use-toast';
 
 const FileLists: FC = () => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
-  const {currentUser} = useAuth();
-  const {toast} = useToast();
+  const { currentUser } = useAuth();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (currentUser) {
-      const userUploadedFilesRef = ref(storage, `my-images/${currentUser?.email}/`);
+      const userUploadedFilesRef = ref(
+        storage,
+        `my-images/${currentUser?.email}/`,
+      );
 
       listAll(userUploadedFilesRef)
         .then((response) => {
           return Promise.all(
-            response.items.map((item) => getDownloadURL(item))
+            response.items.map((item) => getDownloadURL(item)),
           );
         })
         .then((urls) => {
@@ -30,10 +33,10 @@ const FileLists: FC = () => {
         })
         .catch((error) => {
           toast({
-            variant: "destructive",
+            variant: 'destructive',
             description: error,
-            duration: 8000
-          })
+            duration: 8000,
+          });
         });
     }
   }, [currentUser]);

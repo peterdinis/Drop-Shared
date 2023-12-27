@@ -25,7 +25,7 @@ const LoginForm: FC = () => {
       Cookies.set('userCredentials', JSON.stringify(credentials));
       toast({
         title: 'Login was succesfull',
-        className: "bg-green-400",
+        className: 'bg-green-400',
         duration: 2000,
       });
       router.push('/dashboard');

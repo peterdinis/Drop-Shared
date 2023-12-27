@@ -1,7 +1,7 @@
 export type CardFileType = {
-    item: string;
-}
+  item: string;
+};
 
 export type FileTypeDisplayPreview = {
-    file?: File;
-}
+  file?: File;
+};
